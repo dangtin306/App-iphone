@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package toan.tieu.hoc;
 
 import com.getcapacitor.BridgeActivity;
 

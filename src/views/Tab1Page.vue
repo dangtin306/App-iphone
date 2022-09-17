@@ -57,18 +57,28 @@
               <button type="button"  
  class="btn btn-outline-danger w-100">Lấy ý nghĩa của 1 con số bất kỳ</button>
             </router-link>
-
+<br><br>
               <router-link style="text-decoration: none"  to="/tabs/tab4">
 
                 <button type="button"  
                 class="btn btn-outline-danger w-100">Máy tính </button>
               </router-link>
+              <br><br>
               <router-link style="text-decoration: none"  to="/tabs/tab7">
 
                 <button type="button"  
-                class="btn btn-outline-danger w-100">Học Phép toán cơ bản </button>
+                class="btn btn-outline-danger w-100">Học Lý Thuyết Phép toán<br>cơ bản </button>
+              </router-link>    <br><br>
+              <router-link style="text-decoration: none"  to="/tabs/tab8">
+
+                <button type="button"  
+                class="btn btn-outline-danger w-100">Game vui Toán học </button>
+              </router-link>    <br><br>
+              <router-link style="text-decoration: none"  to="/tabs/tab9">
+
+                <button type="button"  
+                class="btn btn-outline-danger w-100">Đếm thời gian</button>
               </router-link>
-            
     </ion-content>
     
   </ion-page>
