@@ -1,14 +1,17 @@
 <template>
     <ion-page>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Tab 3</ion-title>
-        </ion-toolbar>
-      </ion-header>
+        <ion-header>
+            <ion-toolbar>
+                <ion-buttons slot="start">
+                    <ion-back-button text="Quay Lại"></ion-back-button>
+                </ion-buttons>
+                <ion-title>Learning</ion-title>
+            </ion-toolbar>
+        </ion-header>
       <ion-content :fullscreen="true">
         <ion-header collapse="condense">
           <ion-toolbar>
-            <ion-title size="large">Tab 3</ion-title>
+            <ion-title size="large">Learning</ion-title>
           </ion-toolbar>
         </ion-header>
         <button type="button"  
@@ -82,11 +85,11 @@
   
   <script>
 
-  import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+  import { IonPage, IonHeader,IonBackButton, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
  
   export default {
     name: 'Tab3Page',
-    components: {  IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
+    components: {  IonHeader,IonBackButton, IonToolbar, IonTitle, IonContent, IonPage },
     data() {
       return {
         pro: '' ,

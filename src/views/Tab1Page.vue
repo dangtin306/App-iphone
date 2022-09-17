@@ -54,16 +54,19 @@
 
             <router-link style="text-decoration: none"  to="/tabs/tab6">
 
-              <ion-button   expand="block" fill="outline">Lấy ý nghĩa của 1 con số bất kỳ</ion-button>
+              <button type="button"  
+ class="btn btn-outline-danger w-100">Lấy ý nghĩa của 1 con số bất kỳ</button>
             </router-link>
 
               <router-link style="text-decoration: none"  to="/tabs/tab4">
 
-                <ion-button   expand="block" fill="outline">Máy tính </ion-button>
+                <button type="button"  
+                class="btn btn-outline-danger w-100">Máy tính </button>
               </router-link>
               <router-link style="text-decoration: none"  to="/tabs/tab7">
 
-                <ion-button   expand="block" fill="outline">Học Phép toán cơ bản </ion-button>
+                <button type="button"  
+                class="btn btn-outline-danger w-100">Học Phép toán cơ bản </button>
               </router-link>
             
     </ion-content>
