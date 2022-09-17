@@ -2,13 +2,13 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Tab 1</ion-title>
+        <ion-title>Ý nghĩa của các con số</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Tab 1</ion-title>
+          <ion-title size="large">Ý nghĩa của các con số</ion-title>
         </ion-toolbar>
       </ion-header>
   
@@ -42,12 +42,32 @@
       <input type="radio" class="btn-check"   value="10" v-model="picked" id="chay10" autocomplete="off">
       <label class="btn rounded-pill btn-outline-primary btn-lg" @click="chay1" for="chay10">Ten</label>
 
-      
-      {{ thanhcong }}
 
-<p id="demo"> </p>
- 
+      <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+        <div class="flex flex-col items-center justify-center py-2">
+          <div class="absolute inset-0 bg-gradient-to-r from-indigo-200 to-purple-600 shadow-lg transform rotate-6 rounded-3xl">
+  
+          </div>
+          <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+           <h2 class="text-3xl text-break font-bold">
+            <p id="demo"> </p></h2></div></div></div>
+
+            <router-link style="text-decoration: none"  to="/tabs/tab6">
+
+              <ion-button   expand="block" fill="outline">Lấy ý nghĩa của 1 con số bất kỳ</ion-button>
+            </router-link>
+
+              <router-link style="text-decoration: none"  to="/tabs/tab4">
+
+                <ion-button   expand="block" fill="outline">Máy tính </ion-button>
+              </router-link>
+              <router-link style="text-decoration: none"  to="/tabs/tab7">
+
+                <ion-button   expand="block" fill="outline">Học Phép toán cơ bản </ion-button>
+              </router-link>
+            
     </ion-content>
+    
   </ion-page>
 </template>
 

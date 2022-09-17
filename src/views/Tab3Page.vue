@@ -1,29 +1,49 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Tab 3</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Tab 3</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      
-      <ExploreContainer name="Tab 3 page" />
-    </ion-content>
-  </ion-page>
+  <in-app-browser></in-app-browser>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 
-export default defineComponent({
-  name: 'Tab3Page',
-  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage }
-});
+function beforeloadCallBack(params, callback) {
+  console.log(">>> beforeload: " + params.url.toString());
+
+  if (params.url.includes("https://hust.media?=app")) {
+    console.log(">>> beforeload: allowed");
+    callback(params.url);
+  } else {
+    console.log(">>> beforeload: restricted");
+    alert("The URL is restricted!");
+  }
+}
+
+export default {
+  components: {
+    InAppBrowser,
+  },
+  setup() {
+    const options = {
+      location: "no",
+      usewkwebview: "yes"
+    };
+    let browser = InAppBrowser.create(
+      "https://hust.media?=app",
+      "_blank",
+      options
+    );
+    browser.on("loadstop").subscribe((event) => {
+      console.log(">>> onLoadStop:" + event.url.toString());
+      browser.show() ;
+    });
+    browser.on("loadstart").subscribe((event) => {
+      console.log(">>> onLoadStart:" + event.url.toString());
+      browser.show() ;
+    });
+    browser.on("beforeload").subscribe((params) =>
+      beforeloadCallBack(params, () => {
+        return params.url;
+      })
+    );
+  },
+};
 </script>
