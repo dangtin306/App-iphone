@@ -11,74 +11,46 @@
           <ion-title size="large">Ý nghĩa của các con số</ion-title>
         </ion-toolbar>
       </ion-header>
-  
-      <input type="radio" class="btn-check"   value="1" v-model="picked" id="chay1" autocomplete="off">
-      <label class="btn rounded-pill btn-outline-primary btn-lg" @click="chay1" for="chay1">One</label>
+      <body
+      class="
+        antialiased
+        bg-gradient-to-r
+        from-pink-300
+        via-purple-300
+        to-indigo-400
+      "
+    >
+    
 
-      <input type="radio" class="btn-check"   value="2" v-model="picked" id="chay2" autocomplete="off">
-      <label class="btn rounded-pill btn-outline-primary btn-lg" @click="chay1" for="chay2">Two</label>
-
-      <input type="radio" class="btn-check"   value="3" v-model="picked" id="chay3" autocomplete="off">
-      <label class="btn rounded-pill btn-outline-primary btn-lg" @click="chay1" for="chay3">Three</label>
-
-      <input type="radio" class="btn-check"   value="4" v-model="picked" id="chay4" autocomplete="off">
-      <label class="btn rounded-pill btn-outline-primary btn-lg" @click="chay1" for="chay4">Four</label>
-
-      <input type="radio" class="btn-check"   value="5" v-model="picked" id="chay5" autocomplete="off">
-      <label class="btn rounded-pill btn-outline-primary btn-lg" @click="chay1" for="chay5">Five</label>
-
-      <input type="radio" class="btn-check"   value="6" v-model="picked" id="chay6" autocomplete="off">
-      <label class="btn rounded-pill btn-outline-primary btn-lg" @click="chay1" for="chay6">Six</label>
-
-      <input type="radio" class="btn-check"   value="7" v-model="picked" id="chay7" autocomplete="off">
-      <label class="btn rounded-pill btn-outline-primary btn-lg" @click="chay1" for="chay7">Seven</label>
-
-      <input type="radio" class="btn-check"   value="8" v-model="picked" id="chay8" autocomplete="off">
-      <label class="btn rounded-pill btn-outline-primary btn-lg" @click="chay1" for="chay8">Eight</label>
-
-      <input type="radio" class="btn-check"   value="9" v-model="picked" id="chay9" autocomplete="off">
-      <label class="btn rounded-pill btn-outline-primary btn-lg" @click="chay1" for="chay9">Nine</label>
-
-      <input type="radio" class="btn-check"   value="10" v-model="picked" id="chay10" autocomplete="off">
-      <label class="btn rounded-pill btn-outline-primary btn-lg" @click="chay1" for="chay10">Ten</label>
-
-
-      <div class="relative py-3 sm:max-w-xl sm:mx-auto">
-        <div class="flex flex-col items-center justify-center py-2">
-          <div class="absolute inset-0 bg-gradient-to-r from-indigo-200 to-purple-600 shadow-lg transform rotate-6 rounded-3xl">
-  
-          </div>
-          <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-           <h2 class="text-3xl text-break font-bold">
-            <p id="demo"> </p></h2></div></div></div>
-
-            <router-link style="text-decoration: none"  to="/tabs/tab6">
-
-              <button type="button"  
- class="btn btn-outline-danger w-100">Lấy ý nghĩa của 1 con số bất kỳ</button>
-            </router-link>
-<br><br>
-              <router-link style="text-decoration: none"  to="/tabs/tab4">
-
-                <button type="button"  
-                class="btn btn-outline-danger w-100">Máy tính </button>
-              </router-link>
-              <br><br>
-              <router-link style="text-decoration: none"  to="/tabs/tab7">
-
-                <button type="button"  
-                class="btn btn-outline-danger w-100">Học Lý Thuyết Phép toán<br>cơ bản </button>
-              </router-link>    <br><br>
-              <router-link style="text-decoration: none"  to="/tabs/tab8">
-
-                <button type="button"  
-                class="btn btn-outline-danger w-100">Game vui Toán học </button>
-              </router-link>    <br><br>
-              <router-link style="text-decoration: none"  to="/tabs/tab9">
-
-                <button type="button"  
-                class="btn btn-outline-danger w-100">Đếm thời gian</button>
-              </router-link>
+      
+                <router-link style="text-decoration: none"  to="/tabs/tab8">
+              <button type='button'
+              class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>
+              <div class='m-auto'>
+                <div class='flex items-center justify-start flex-1 space-x-4'>
+                  <span class='font-medium mb-[-2px]'>Ví dụ người ta ấn vô liên kết</span>
+                  <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+                    <path d='M5 12h13M12 5l7 7-7 7' />
+                </svg>
+                </div>
+              </div>
+            </button>
+          </router-link> 
+          <router-link style="text-decoration: none"  to="/tabs/tab10">
+              <button type='button'
+              class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>
+              <div class='m-auto'>
+                <div class='flex items-center justify-start flex-1 space-x-4'>
+                  
+                  <span class='font-medium mb-[-2px]'>Giải trí toán học</span>
+                  <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+                    <path d='M5 12h13M12 5l7 7-7 7' />
+                    </svg>
+                </div>
+              </div>
+            </button>
+          </router-link> 
+         </body>
     </ion-content>
     
   </ion-page>
@@ -94,6 +66,7 @@ export default {
   data() {
       return {
         picked: '' ,
+        traloiso: null 
       }} ,
       methods: 
     {
@@ -129,9 +102,10 @@ axios.request(options).then(response => {
   console.log(response.data);
 this.thanhcong = response.data.text ; 
 console.log(this.thanhcong);
-
+this.traloiso = 'ok' ;
 document.getElementById("demo").innerHTML = this.thanhcong ;
         console.log('Text: %o', this.myHtmlCode );
+       
   
 }
 

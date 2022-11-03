@@ -48,6 +48,11 @@ const routes = [
       }
       ,
       {
+        path: 'tab10',
+        component: () => import('@/views/Tab10Page.vue')
+      }
+      ,
+      {
         path: 'tab4',
         name: 'tab4',
         // route level code-splitting
