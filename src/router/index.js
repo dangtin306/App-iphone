@@ -9,6 +9,15 @@ const routes = [
     redirect: '/tabs/tab1'
   },
   {
+    path: '/tabs/sginup',
+    name: 'sginup',
+    component: () => import('@/views/sginup.vue')
+  },
+  {
+    path: '/tabs/auth',
+    component: () => import('@/views/auth.vue')
+  },
+  {
     path: '/tabs/',
     component: TabsPage,
     children: [
@@ -36,6 +45,7 @@ const routes = [
         path: 'tab7',
         component: () => import('@/views/Tab7Page.vue')
       }
+      
       ,
       {
         path: 'tab8',

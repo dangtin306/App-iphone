@@ -57,7 +57,7 @@
 </template>
 
 <script>
-
+import { Storage } from '@ionic/storage';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
 import axios from 'axios' 
 export default {
@@ -65,11 +65,43 @@ export default {
   components: {  IonHeader, IonToolbar, IonTitle, IonContent, IonPage } ,
   data() {
       return {
+        localStorage: new Storage(),
         picked: '' ,
+        apikey: null ,
         traloiso: null 
       }} ,
+      created(){
+        this.localStorage.create();
+        this.apikey = this.getLocalStorage('apikey') ;
+        Promise.all([this.apikey]).then((arrayOfResults) => {
+    this.apikey=arrayOfResults[0]; 
+    console.log(this.apikey);
+    if ( this.apikey == null )
+        {
+          this.$router.push('auth') ;
+         }   
+       else if ( this.apikey == '' )
+        {
+          this.$router.push('auth') ;
+         }   
+  });
+    
+        
+      },
       methods: 
     {
+      async setLocalStorage(index, value) {
+      await this.localStorage.set(index, value);
+    },
+    async removeLocalStorage(index) {
+      await this.localStorage.remove(index);
+    },
+    async clearLocalStorage() {
+      await this.localStorage.clear();
+    },
+    getLocalStorage(index) {
+      return this.localStorage.get(index);
+    },
         chay1() {
           
         
