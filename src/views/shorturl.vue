@@ -24,18 +24,30 @@
         "
       >
       <div class="mt-3 mx-2">
-        <form @submit="onSubmit" @click="onSubmit()" class="add-form">
+        <br>
+        <form @submit="onSubmit"  class="add-form">
           <div class="form-control">
             <label>Nhập liên kết cần rút gọn</label>
             <br>
             <div class="input-group flex-nowrap">
               <span class="input-group-text" id="addon-wrapping">url</span>
-              <input type="text" class="form-control" placeholder="Điền link" aria-label="Username" v-model="name" name="name" aria-describedby="addon-wrapping">
+              <input type="text" class="form-control" placeholder="Điền link" aria-label="inputlienket" v-model="inputlienket" name="inputlienket" aria-describedby="addon-wrapping">
             </div>
         
           </div>
        <br>
-           <button type='submit'
+       <div v-if="comota" class="form-control">
+        <label>Nhập mô tả liên kết</label>
+        <br>
+        <div class="input-group flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping">Mô tả</span>
+          <input type="text" class="form-control" placeholder="Điền mô tả" aria-label="inputmota" v-model="inputmota" name="inputmota" aria-describedby="addon-wrapping">
+        </div>
+    
+      </div>
+     
+      <br>
+           <button type='submit' @click="onSubmit()"
         class='w-100 flex break-inside bg-black rounded-3xl px-8 py-3 mb-3 w-full dark:bg-slate-800 dark:text-white'>
         <div class='flex items-center justify-between flex-1'>
           <span class='text-lg font-medium text-white'>
@@ -53,7 +65,9 @@
           </svg>
         </div>
       </button>
-      <div v-if="thanhcong">  
+   
+    </form>
+    <div v-if="thanhcong2">  
    
         <div class="relative py-3 sm:max-w-xl sm:mx-auto">
           <div class="flex flex-col items-center justify-center py-2">
@@ -62,9 +76,11 @@
             </div>
             <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
              <h2 class="text-3xl text-break font-bold">
-              kết quả {{ thanhcong }}.</h2></div></div></div>
+              kết quả {{ thanhcong2 }}.</h2></div></div></div>
+              <button @click="saocheplienket()" class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+               Sao chép
+              </button> 
   </div>
-    </form>
     </div>
   </body>
   
@@ -74,7 +90,10 @@
   
   <script>
   
-  import axios from 'axios' 
+  import axios from 'axios' ;
+  import { Storage } from '@ionic/storage';
+  import { Clipboard } from '@capacitor/clipboard';
+  import Swal from 'sweetalert2' ;
   import { IonPage, IonHeader, IonToolbar,IonBackButton, IonTitle, IonContent } from '@ionic/vue';
   // import ExploreContainer from '@/components/ExploreContainer.vue';
   
@@ -82,13 +101,37 @@
     name: 'Tab2Page',
     components: {  IonHeader, IonToolbar,IonBackButton, IonTitle, IonContent, IonPage } ,
     data (){ return {
+        clipboard: Clipboard ,
                 name : '',
                 age : '',
                 nutorder: 'Ấn đây để rút gọn' ,
+                inputlienket: null ,
+                apikey: null ,
+                lienketoutput: null ,
+                thanhcong2: null ,
+                inputmota: null ,
                 nutxuly: 0 ,
                 info : '',
+                
+                localStorage: new Storage(),
                 thanhcong : '' ,
             }
+        },
+        created(){
+            
+            
+         
+
+
+
+
+            this.localStorage.create();
+        this.apikey = this.getLocalStorage('apikey') ;
+        Promise.all([this.apikey]).then((arrayOfResults) => {
+    this.apikey=arrayOfResults[0]; 
+    console.log(this.apikey) ;
+  });
+  
         },
         methods : {
             
@@ -96,30 +139,69 @@
                 this.nutxuly = 1 ;
             this.nutorder = 'chờ xíu nhé' ;
                 e.preventDefault()
-                if(!this.name){
+                if(!this.inputlienket){
                     alert('Please điền đầy đủ thông tin')
                     this.nutxuly = 0 ;
                     this.nutorder = 'điền đủ thông tin' 
                     return
                 }
                 axios
-       .post('https://tuongtac.fun/ionic/shorturl.php', {
-        Username: this.name ,
-        Password: this.Password 
+       .post('https://tuongtac.fun/ionic/addlink.php', {
+        lienket: this.inputlienket ,
+        apikey: this.apikey ,
+        mota: this.inputmota ,
+        chedo: 'shorturl'
   })
   .then(response => (this.testFunction(response  )))
   .catch(error => console.log(error) )
              
                              
             },
+            saocheplienket()
+            {
+                
+                this.clipboard.copy(this.lienketoutput);
+                navigator.clipboard.writeText(this.lienketoutput);
+                Swal.fire({
+  title: 'Sao chép thành công' ,
+  heightAuto : false,
+ 
+})
+            },
             testFunction(response)
             {
                 this.info = response.data ,
                 this.status = this.info.status ,
-                this.message = this.info.message 
+                this.message = this.info.message ,
+                this.lienketoutput = this.info.lienket ,
                 this.nutorder = 'đặt tiếp luôn nào' ,
-this.nutxuly = 0 
-            }
+this.nutxuly = 0
+if ( this.status == 0 )
+    {  
+      Swal.fire({
+  title: this.info.message ,
+  heightAuto : false,
+ 
+})
+
+    }
+    else if ( this.status == 1 )
+    {
+        this.thanhcong2 = this.lienketoutput
+    }
+            },
+            async setLocalStorage(index, value) {
+      await this.localStorage.set(index, value);
+    },
+    async removeLocalStorage(index) {
+      await this.localStorage.remove(index);
+    },
+    async clearLocalStorage() {
+      await this.localStorage.clear();
+    },
+    getLocalStorage(index) {
+      return this.localStorage.get(index);
+    }
         }
   };
   </script>
