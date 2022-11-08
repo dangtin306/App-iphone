@@ -85,6 +85,7 @@
             {
                 this.info = response.data ,
     this.apikey = this.info.apikey ,
+    this.username = this.info.username ,
     this.message = this.info.message ,
     this.status = this.info.status 
     if ( this.status == 0 )
@@ -98,7 +99,7 @@
     }
     else if ( this.status == 1 )
 {
-    
+  this.setLocalStorage( 'username' , this.username  ) ;
     this.setLocalStorage('apikey' , this.apikey  ) ;
     this.$router.push('/') ;
 }
@@ -124,7 +125,7 @@
   headers: headers
 };
                 axios
-       .post('https://tuongtac.fun/dangnhapapi.php', {
+       .post('https://tuongtac.fun/ionic/dangnhap.php', {
         Username: this.Username ,
         Password: this.Password 
   }, config)

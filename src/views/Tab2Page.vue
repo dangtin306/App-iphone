@@ -2,110 +2,220 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Dịch tiếng Anh sang tiếng việt</ion-title>
+        <ion-title>Add Links</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Dịch tiếng Anh sang tiếng việt</ion-title>
+          <ion-title >Add Links</ion-title>
         </ion-toolbar>
       </ion-header>
-      
-      <form @submit="onSubmit" class="add-form">
-        <div class="form-control">
-          <label>Fill in English words</label>
+       <div class="text-center">
+      <button ref="page" id="addlink" expand="block" class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+        + Add to link
+      </button> 
+      <button ref="page2" id="Socials" class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+        + Add a social
+      </button></div>
+
+      <ion-modal ref="addlink" trigger="addlink" :can-dismiss="canDismiss" :presenting-element="presentingElement">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Add link</ion-title>
+            <ion-buttons slot="end">
+              <ion-button @click="dismiss()">Đóng</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
           <br>
-          <div class="input-group flex-nowrap">
-            <span class="input-group-text" id="addon-wrapping">Text</span>
-            <input type="text" class="form-control" placeholder="Điền từ cần dịch" aria-label="Username" v-model="name" name="name" aria-describedby="addon-wrapping">
-          </div>
-      
-        </div>
-     <br>
-         <button type='submit'
-      class='w-100 flex break-inside bg-black rounded-3xl px-8 py-3 mb-3 w-full dark:bg-slate-800 dark:text-white'>
-      <div class='flex items-center justify-between flex-1'>
-        <span class='text-lg font-medium text-white'>Ấn đây để dịch</span>
-        <svg width='17' height='17' viewBox='0 0 17 17' fill='none' xmlns='http://www.w3.org/2000/svg'>
-          <path fillRule='evenodd' clipRule='evenodd'
-            d='M0 8.71423C0 8.47852 0.094421 8.25246 0.262491 8.08578C0.430562 7.91911 0.658514 7.82547 0.896201 7.82547H13.9388L8.29808 2.23337C8.12979 2.06648 8.03525 1.84013 8.03525 1.60412C8.03525 1.36811 8.12979 1.14176 8.29808 0.974875C8.46636 0.807989 8.6946 0.714233 8.93259 0.714233C9.17057 0.714233 9.39882 0.807989 9.5671 0.974875L16.7367 8.08499C16.8202 8.16755 16.8864 8.26562 16.9316 8.3736C16.9767 8.48158 17 8.59733 17 8.71423C17 8.83114 16.9767 8.94689 16.9316 9.05487C16.8864 9.16284 16.8202 9.26092 16.7367 9.34348L9.5671 16.4536C9.39882 16.6205 9.17057 16.7142 8.93259 16.7142C8.6946 16.7142 8.46636 16.6205 8.29808 16.4536C8.12979 16.2867 8.03525 16.0604 8.03525 15.8243C8.03525 15.5883 8.12979 15.362 8.29808 15.1951L13.9388 9.603H0.896201C0.658514 9.603 0.430562 9.50936 0.262491 9.34268C0.094421 9.17601 0 8.94995 0 8.71423Z'
-            fill='white' />
-        </svg>
-      </div>
-    </button>
-    <div v-if="thanhcong">  
- 
-      <div class="relative py-3 sm:max-w-xl sm:mx-auto">
-        <div class="flex flex-col items-center justify-center py-2">
-          <div class="absolute inset-0 bg-gradient-to-r from-indigo-200 to-purple-600 shadow-lg transform rotate-6 rounded-3xl">
-  
-          </div>
-          <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-           <h2 class="text-3xl text-break font-bold">
-            kết quả {{ thanhcong }}.</h2></div></div></div>
-</div>
-  </form>
+          <label class="block text-grey-darker text-sm font-bold mb-2" for="inputlienket">
+            Điền liên kết bạn muốn thêm nhé 
+          </label>
+          <input v-model="inputlienket" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="inputlienket" type="text" placeholder="Nhập liên kết">
+          <br>
+          <label class="Mô tả liên kết" for="inputmota">
+            Mô tả liên kết
+          </label>
+          <input v-model="inputmota" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="inputmota"  type="text" placeholder="Nhập mô tả">
+
+           <br> <br> <div class="text-center">
+          <button @click="luulink('addlink')" class=" bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+            Xác nhận
+          </button> </div>
+        </ion-content>
+      </ion-modal>
+      <ion-modal ref="Socials" trigger="Socials" :can-dismiss="canDismiss" :presenting-element="presentingElement">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Socials</ion-title>
+            <ion-buttons slot="end">
+              <ion-button @click="dismiss()">Đóng</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <br>
+         <div class="text-center">
+          <button @click="luulink('addlink')" class=" bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+            Xác nhận
+          </button> </div>
+        </ion-content>
+      </ion-modal>
+      <p>
+        Liên kết: {{ lienket }}<br>
+       Mô tả: {{ mota }}
+      </p>
 
 
     </ion-content>
   </ion-page>
 </template>
 
-<script>
-
-import axios from 'axios' 
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+<script >
+import { doc, setDoc , onSnapshot   } from "firebase/firestore" ;
+import db from '../firebase/init.js' ;
+import { Storage } from '@ionic/storage';
+import axios from 'axios' ;
+import Swal from 'sweetalert2' ;
+import {
+    IonButtons,
+    IonButton,
+    IonModal,
+    IonHeader,
+    IonContent,
+    IonToolbar,
+    IonTitle,
+    IonPage,
+} from '@ionic/vue';
 // import ExploreContainer from '@/components/ExploreContainer.vue';
 
 export default {
   name: 'Tab2Page',
-  components: {  IonHeader, IonToolbar, IonTitle, IonContent, IonPage } ,
+  components: {  
+    IonButtons,
+      IonButton,
+      IonModal,
+      IonHeader,
+      IonContent,
+      IonToolbar,
+      IonTitle,
+      IonPage,
+  } ,
   data (){ return {
+    message: 'This modal example uses triggers to automatically open a modal when the button is clicked.',
               name : '',
               age : '',
+              lienket: null ,
+              mota: null ,
+              inputlienket: null ,
+              addlink: '' ,
               info : '',
               thanhcong : '' ,
+              localStorage: new Storage(),
+
           }
       },
+      mounted() {
+      this.presentingElement = this.$refs.page;
+      this.presentingElement = this.$refs.page2;
+    },
+    created(){
+   
+      this.localStorage.create();
+        this.apikey = this.getLocalStorage('apikey') ;
+        Promise.all([this.apikey]).then((arrayOfResults) => {
+    this.apikey=arrayOfResults[0]; 
+  });
+  
+  this.username = this.getLocalStorage('username') ;
+        Promise.all([this.username]).then((arrayOfResults) => {
+    this.username=arrayOfResults[0]; 
+  });
+  setTimeout( () => {
+    this.getCountry() 
+      }, 500);
+ 
+        },
       methods : {
-          onSubmit(e){
-              e.preventDefault()
-              if(!this.name){
-                  alert('Please điền đầy đủ thông tin')
-                  return
-              }
-              const newInformation = {
-                  id: Math.floor(Math.random() * 100000),
-                  name : this.name,
-                  age : this.age,
-                  reminder : this.reminder
-              }
-              this.$emit('add-information', newInformation) ;
+        async getCountry() {
 
-              
-
-
- const url = 'https://deep-translate1.p.rapidapi.com/language/translate/v2' ;
- const  headers = {
-    'content-type': 'application/json',
-    'X-RapidAPI-Key': '2163a7c370msh7888978aa0a7eb7p1e4fd5jsn1170303e165b',
-    'X-RapidAPI-Host': 'deep-translate1.p.rapidapi.com'
+        onSnapshot(doc(db, this.apikey, 'biolink'), (snap) => {
+        this.lienket = snap.data().lienket
+        this.mota = snap.data().mota
+      })
+    },
+        async addCountryCapital() {
+       
+await setDoc(doc(db, this.apikey, 'biolink' ), {
+  
+  // new data
+  username: this.username ,
+  lienket: this.inputlienket ,
+  mota: this.inputmota
+  // merge
+}, { merge: true })
+},
+        dismiss() {
+        this.$refs.addlink.$el.dismiss();
+        this.$refs.Socials.$el.dismiss();
+      },
+      onTermsChanged() {
+      
+      },
+      luulink(addlink)
+            {
+                const  headers = {
+    'content-type': 'application/json' 
   } ;
-  const data = {"q":this.name ,"source":"en","target":"vi"} ;
   let config = {
   headers: headers
-}
+};
+                axios
+       .post('https://tuongtac.fun/ionic/addlink.php', {
+        lienket: this.inputlienket ,
+        apikey: this.apikey ,
+        mota: this.inputmota ,
+        chedo: addlink 
+  }, config)
+  .then(response => (this.testFunction(response  )))
+  .catch(error => console.log(error) )
 
-axios.post(url ,data , config ).then(response =>{
-  this.thanhcong = response.data.data.translations.translatedText ; 
-  console.log(this.thanhcong);
-}).catch(function (error) {
-	console.error(error);
-});
-           
-                           
-          }
+},
+testFunction(response)
+            {
+                this.info = response.data ,
+    this.message = this.info.message ,
+    this.status = this.info.status 
+    if ( this.status == 0 )
+    {  
+      Swal.fire({
+  title: this.info.message ,
+  heightAuto : false,
+ 
+})
+
+    }
+    else if ( this.status == 1 )
+{
+
+  this.addCountryCapital();
+ this.dismiss() ;
+}
+            },
+            async setLocalStorage(index, value) {
+      await this.localStorage.set(index, value);
+    },
+    async removeLocalStorage(index) {
+      await this.localStorage.remove(index);
+    },
+    async clearLocalStorage() {
+      await this.localStorage.clear();
+    },
+    getLocalStorage(index) {
+      return this.localStorage.get(index);
+    }
       }
 };
 </script>

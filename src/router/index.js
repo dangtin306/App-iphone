@@ -34,6 +34,10 @@ const routes = [
         component: () => import('@/views/Tab2Page.vue')
       },
       {
+        path: 'shorturl',
+        component: () => import('@/views/shorturl.vue')
+      },
+      {
         path: 'tab3',
         component: () => import('@/views/Tab3Page.vue')
       },

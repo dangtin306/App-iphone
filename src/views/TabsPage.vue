@@ -5,16 +5,16 @@
       <ion-tab-bar slot="bottom">
         <ion-tab-button tab="tab1" href="/tabs/tab1">
           <ion-icon :icon="home" />
-          <ion-label>Con số</ion-label>
+          <ion-label>Trang chủ</ion-label>
         </ion-tab-button>
           
         <ion-tab-button tab="tab2" href="/tabs/tab2">
-          <ion-icon :icon="text" />
-          <ion-label>Từ điển</ion-label>
+          <ion-icon :icon="link" />
+          <ion-label>Liên Kết</ion-label>
         </ion-tab-button>
         <ion-tab-button tab="tab3" href="/tabs/tab7">
-          <ion-icon :icon="ellipse" />
-          <ion-label>Lời giải</ion-label>
+          <ion-icon :icon="analytics" />
+          <ion-label>Thống kê</ion-label>
         </ion-tab-button>
         <ion-tab-button tab="tab4" @click="gioithieu">
           <ion-icon :icon="square" />
@@ -29,7 +29,7 @@
 import { defineComponent } from 'vue';
 import { InAppBrowser  } from "@ionic-native/in-app-browser";
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { ellipse, square, home ,text } from 'ionicons/icons';
+import { analytics, square, home ,link } from 'ionicons/icons';
 function beforeloadCallBack(params, callback) {
   console.log(">>> beforeload: " + params.url.toString());
 
@@ -46,9 +46,9 @@ export default defineComponent({
   components: { IonLabel, IonTabs, IonTabBar, IonTabButton, IonIcon, IonPage, IonRouterOutlet },
   setup() {
     return {
-      ellipse, 
+      analytics, 
       square, 
-      text,
+      link,
       home,
     }
   },

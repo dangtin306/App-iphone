@@ -29,6 +29,7 @@
     "cordova-plugin-inappbrowser": "^5.0.0",
     "cordova-plugin-ionic-webview": "^5.0.0",
     "core-js": "^3.6.5",
+    "firebase": "^9.13.0",
     "ionicons": "^6.0.3",
     "sweetalert2": "^11.6.5",
     "vue": "^3.2.41",
