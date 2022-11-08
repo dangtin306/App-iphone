@@ -177,6 +177,7 @@ await setDoc(doc(db, this.apikey, 'biolink' ), {
         lienket: this.inputlienket ,
         apikey: this.apikey ,
         mota: this.inputmota ,
+        
         chedo: addlink 
   }, config)
   .then(response => (this.testFunction(response  )))
