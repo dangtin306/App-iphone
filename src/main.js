@@ -23,6 +23,10 @@ import './css/bootstrap.css';
 import './css/bootstrap.min.css';
 /* Theme variables */
 import './theme/variables.css';
+import jQuery from 'jquery' ;
+
+window.jQuery = jQuery;
+
 
 const app = createApp(App)
   .use(IonicVue)
