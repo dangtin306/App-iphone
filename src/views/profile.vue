@@ -222,12 +222,11 @@ import * as $ from 'jquery' ;
   import Swal from 'sweetalert2' ;
   import { IonPage, IonHeader, IonToolbar,IonBackButton, IonTitle, IonContent } from '@ionic/vue';
   // import ExploreContainer from '@/components/ExploreContainer.vue';
- 
-  import '../../node_modules/bootstrap/dist/js/popper.min.js' ;
-  import '../../node_modules/bootstrap/dist/js/bootstrap2.min.js' ;
-  import '../../node_modules/bootstrap-select/dist/css/bootstrap-select.css' ;
-    import '../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css' ;
-    import '../../node_modules/bootstrap-select/js/bootstrap-select.js' ;
+
+  import './bootstrap2.min.js' ;
+  import './bootstrap-select.css' ;
+    import './bootstrap-select.min.css' ;
+    import './bootstrap-select.js' ;
   export default {
     name: 'Tab2Page',
     components: {  IonHeader, IonToolbar,IonBackButton, IonTitle, IonContent, IonPage } ,
