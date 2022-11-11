@@ -30,24 +30,27 @@
             </p>
         </div>
         <div class="mx-1 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
-            <div class="mb-4">
-              <label class="block text-grey-darker text-sm font-bold mb-2" for="username">
-                Username
-              </label>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="username" type="text" placeholder="Username">
-            </div>
-            <div class="mb-6">
-              <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
-                Password
-              </label>
-              <input class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" id="password" type="password" placeholder="******************">
-              <p class="text-red text-xs italic">Please choose a password.</p>
-            </div>
+          <div class="mb-4">
+            <label class="block text-grey-darker text-sm font-bold mb-2" for="username">
+              Username 
+            </label>
+            <input v-model="Username" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="username" type="text" placeholder="Username">
+          </div>
+          <div class="mb-6">
+            <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
+              Password
+            </label>
+            <input v-model="Password"  class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" id="password" type="password" placeholder="******************">
+            <p class="text-red text-xs italic">Please choose a password.</p>
+          </div>
             <div class="flex items-center justify-between">
              
-                <button class="bg-dark hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="button">
+                <button @click="signup" class="bg-dark hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="button">
                 Sign Up
               </button>
+              <router-link to="/tabs/auth" class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="#">
+                Ấn đăng nhập <br>Nếu bạn đã có tài khoản nhé
+                </router-link>
             </div>
         </div>
   </body>
@@ -56,59 +59,82 @@
   </template>
   
   <script>
-  
+import { Storage } from '@ionic/storage';
   import axios from 'axios' 
   import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent , IonBackButton } from '@ionic/vue';
   // import ExploreContainer from '@/components/ExploreContainer.vue';
-  
+  import Swal from 'sweetalert2' ;
   export default {
     name: 'Tab2Page',
     components: {  IonHeader, IonToolbar, IonTitle, IonContent, IonPage , IonBackButton} ,
     data (){ return {
                 name : '',
+                localStorage: new Storage(),
                 age : '',
+                Username : null,
+        Password : null ,
                 info : '',
                 thanhcong : '' ,
             }
         },
+        created(){
+
+          this.localStorage.create();
+        },
         methods : {
-            onSubmit(e){
-                e.preventDefault()
-                if(!this.name){
-                    alert('Please điền đầy đủ thông tin')
-                    return
-                }
-                const newInformation = {
-                    id: Math.floor(Math.random() * 100000),
-                    name : this.name,
-                    age : this.age,
-                    reminder : this.reminder
-                }
-                this.$emit('add-information', newInformation) ;
-  
-                
-  
-  
-   const url = 'https://deep-translate1.p.rapidapi.com/language/translate/v2' ;
-   const  headers = {
-      'content-type': 'application/json',
-      'X-RapidAPI-Key': '2163a7c370msh7888978aa0a7eb7p1e4fd5jsn1170303e165b',
-      'X-RapidAPI-Host': 'deep-translate1.p.rapidapi.com'
-    } ;
-    const data = {"q":this.name ,"source":"en","target":"vi"} ;
-    let config = {
-    headers: headers
-  }
-  
-  axios.post(url ,data , config ).then(response =>{
-    this.thanhcong = response.data.data.translations.translatedText ; 
-    console.log(this.thanhcong);
-  }).catch(function (error) {
-      console.error(error);
-  });
-             
-                             
-            }
+          testFunction(response)
+            {
+                this.info = response.data ,
+    this.apikey = this.info.apikey ,
+    this.username = this.info.username ,
+    this.message = this.info.message ,
+    this.status = this.info.status 
+    if ( this.status == 0 )
+    {  
+      Swal.fire({
+  title: this.info.message ,
+  heightAuto : false,
+ 
+})
+
+    }
+    else if ( this.status == 1 )
+{
+  this.setLocalStorage( 'username' , this.username  ) ;
+    this.setLocalStorage('apikey' , this.apikey  ) ;
+    this.$router.push('/') ;
+}
+            },
+          signup()
+            {
+                const  headers = {
+    'content-type': 'application/json' 
+  } ;
+  let config = {
+  headers: headers
+};
+                axios
+       .post('https://tuongtac.fun/ionic/dangky.php', {
+        Username: this.Username ,
+        Password: this.Password ,
+        keyweb: 'dsfsdfsewstgrgtergte4e4t3t443t34'
+  }, config)
+  .then(response => (this.testFunction(response  )))
+  .catch(error => console.log(error) )
+
+},
+async setLocalStorage(index, value) {
+      await this.localStorage.set(index, value);
+    },
+    async removeLocalStorage(index) {
+      await this.localStorage.remove(index);
+    },
+    async clearLocalStorage() {
+      await this.localStorage.clear();
+    },
+    getLocalStorage(index) {
+      return this.localStorage.get(index);
+    }
         }
   };
   </script>

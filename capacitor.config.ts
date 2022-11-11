@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'hustmedia',
-  appName: 'myApp',
+  appId: 'com.hm.hustmediapro',
+  appName: 'Hust Media',
   webDir: 'dist',
   bundledWebRuntime: false
 };

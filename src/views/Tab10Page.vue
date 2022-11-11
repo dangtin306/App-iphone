@@ -14,7 +14,7 @@
               <ion-title size="large">Giải trí</ion-title>
             </ion-toolbar>
           </ion-header>
-          {{ name }}
+          <!-- {{ name }} -->
         <input type="radio" class="btn-check"   value="1" v-model="picked" id="chay1" autocomplete="off">
         <label class="btn rounded-pill btn-outline-primary btn-lg" @click="chay1" for="chay1">One</label>
   
