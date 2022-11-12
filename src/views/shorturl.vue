@@ -9,12 +9,8 @@
         </ion-toolbar>
       </ion-header>
       <ion-content :fullscreen="true">
-        <ion-header collapse="condense">
-          <ion-toolbar>
-            <ion-title size="large">Dịch tiếng Anh sang tiếng việt</ion-title>
-          </ion-toolbar>
-        </ion-header>
-        <body
+        
+        <div
         class="
           antialiased
           bg-gradient-to-r
@@ -23,6 +19,11 @@
           to-indigo-400
         "
       >
+      <ion-header collapse="condense">
+        <ion-toolbar>
+          <ion-title size="large">Rút gọn liên kết</ion-title>
+        </ion-toolbar>
+      </ion-header>
       <div class="mt-3 mx-2">
         <br>
         <form @submit="onSubmit"  class="add-form">
@@ -36,6 +37,9 @@
         
           </div>
        <br>
+       <p>
+        Bạn thấy liến kết mình quá dài có thể dùng chức năng này để giúp liên kết chia sẻ bạn bè được gọn hơn nhé
+       </p>
        <div v-if="comota" class="form-control">
         <label>Nhập mô tả liên kết</label>
         <br>
@@ -82,7 +86,7 @@
               </button> 
   </div>
     </div>
-  </body>
+  </div>
   
       </ion-content>
     </ion-page>
@@ -101,7 +105,7 @@
     name: 'Tab2Page',
     components: {  IonHeader, IonToolbar,IonBackButton, IonTitle, IonContent, IonPage } ,
     data (){ return {
-        clipboard: Clipboard ,
+      clipboardnative: Clipboard ,
                 name : '',
                 age : '',
                 nutorder: 'Ấn đây để rút gọn' ,
@@ -159,14 +163,14 @@
             },
             saocheplienket()
             {
-                
-                this.clipboard.copy(this.lienketoutput);
-                navigator.clipboard.writeText(this.lienketoutput);
-                Swal.fire({
+                 Swal.fire({
   title: 'Sao chép thành công' ,
   heightAuto : false,
  
 })
+                this.clipboardnative.copy(this.lienketoutput);
+                navigator.clipboard.writeText(this.lienketoutput);
+               
             },
             testFunction(response)
             {
