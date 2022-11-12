@@ -12,10 +12,12 @@
         </ion-toolbar>
       </ion-header>
        <div class="text-center">
-      <button ref="page" id="addlink" expand="block" class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+      <button 
+      ref="addlink"  id="addlink" expand="block" class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
         + Add to link
       </button> 
-      <button @click="click" ref="page2" id="Socials" expand="block" class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+      <button @click="click" 
+      ref="Socials" id="Socials" expand="block" class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
         + Add a social
       </button></div>
 
@@ -196,8 +198,8 @@ export default {
           }
       },
       mounted() {
-      this.presentingElement = this.$refs.page;
-      this.presentingElement = this.$refs.page2;
+      this.presentingElement = this.$refs.addlink;
+      this.presentingElement = this.$refs.Socials;
     },
     created(){
      
@@ -237,7 +239,7 @@ export default {
       })
     },
     async biolinksocial() {
-       onSnapshot(doc(db, this.apikey, 'social'), (snap) => {
+       onSnapshot(doc(db, this.username, 'social'), (snap) => {
         this.usersocial = snap.data() ;
 console.log( this.usersocial );
       })

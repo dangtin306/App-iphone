@@ -6,11 +6,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Trang chủ</ion-title>
-        </ion-toolbar>
-      </ion-header>
+      
       <body
       class="
         antialiased
@@ -20,9 +16,26 @@
         to-indigo-400
       "
     >
-
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Trang chủ</ion-title>
+      </ion-toolbar>
+    </ion-header>
  <br>
-    <router-link style="text-decoration: none"  to="/tabs/tab8">
+ <router-link style="text-decoration: none"  to="/tabs/tab2">
+  <button type='button'
+  class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>
+  <div class='m-auto'>
+    <div class='flex items-center justify-start flex-1 space-x-4'>
+      <span class='font-medium mb-[-2px]'>Chỉnh sửa bio link của bạn</span>
+      <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M5 12h13M12 5l7 7-7 7' />
+    </svg>
+    </div>
+  </div>
+</button>
+</router-link> 
+    <router-link style="text-decoration: none"  to="/tabs/biolink">
       <button type='button'
       class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>
       <div class='m-auto'>
@@ -40,7 +53,7 @@
     class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>
     <div class='m-auto'>
       <div class='flex items-center justify-start flex-1 space-x-4'>
-        <span class='font-medium mb-[-2px]'>rút gọn liên kết</span>
+        <span class='font-medium mb-[-2px]'>rút gọn liên kết ngắn hơn</span>
         <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
           <path d='M5 12h13M12 5l7 7-7 7' />
       </svg>
@@ -48,19 +61,7 @@
     </div>
   </button>
 </router-link> 
-                <router-link style="text-decoration: none"  to="/tabs/tab8">
-              <button type='button'
-              class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>
-              <div class='m-auto'>
-                <div class='flex items-center justify-start flex-1 space-x-4'>
-                  <span class='font-medium mb-[-2px]'>Ví dụ người ta ấn vô liên kết</span>
-                  <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-                    <path d='M5 12h13M12 5l7 7-7 7' />
-                </svg>
-                </div>
-              </div>
-            </button>
-          </router-link> 
+                
           <router-link style="text-decoration: none"  to="/tabs/tab10">
               <button type='button'
               class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>

@@ -23,6 +23,7 @@
         to-indigo-400
       "
     >
+    
   <div class='flex items-center py-7 flex-col min-h-screen '>
       <div class='break-inside relative overflow-hidden flex flex-col justify-between space-y-2 text-sm rounded-xl max-w-[23rem] p-4 mb-4 bg-[#5E17F4] text-white'>
           <span class='uppercase text-xs text-[#D2BDFF]'>Bước 1 lấy link liên kết</span>

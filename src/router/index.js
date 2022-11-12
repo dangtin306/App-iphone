@@ -30,6 +30,10 @@ const routes = [
         component: () => import('@/views/Tab1Page.vue')
       },
       {
+        path: 'biolink',
+        component: () => import('@/views/biolink.vue')
+      },
+      {
         path: 'tab2',
         component: () => import('@/views/Tab2Page.vue')
       },

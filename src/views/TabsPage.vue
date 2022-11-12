@@ -30,17 +30,7 @@ import { defineComponent } from 'vue';
 import { InAppBrowser  } from "@ionic-native/in-app-browser";
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
 import { analytics, square, home ,link } from 'ionicons/icons';
-function beforeloadCallBack(params, callback) {
-  console.log(">>> beforeload: " + params.url.toString());
 
-  if (params.url.includes("https://google.com")) {
-    console.log(">>> beforeload: allowed");
-    callback(params.url);
-  } else {
-    console.log(">>> beforeload: restricted");
-    alert("The URL is restricted!");
-  }
-}
 export default defineComponent({
   name: 'TabsPage',
   components: { IonLabel, IonTabs, IonTabBar, IonTabButton, IonIcon, IonPage, IonRouterOutlet },
@@ -54,11 +44,31 @@ export default defineComponent({
   },
   methods:
   {
+     beforeloadCallBack(params, callback) {
+  console.log(">>> beforeload: " + params.url.toString());
+
+  if (params.url.includes("https://hust.media")) {
+    console.log(">>> beforeload: allowed");
+    callback(params.url);
+  }
+  else if (params.url.includes("https://vip.hust.media")) {
+    console.log(">>> beforeload: allowed");
+    callback(params.url);
+  }
+  else {
+    console.log(">>> beforeload: restricted");
+    alert("The URL is restricted!");
+  }
+},
     gioithieu()
     {
       const options = {
                 location: 'no',
                 usewkwebview: 'yes',
+                zoom : 'yes',
+                mediaPlaybackRequiresUserAction : 'no',
+                hidespinner : 'no',
+                allowInlineMediaPlayback : 'no',
             }
     const browser = InAppBrowser.create(
       'https://hust.media?=app',
@@ -74,7 +84,7 @@ export default defineComponent({
       
     });
     browser.on("beforeload").subscribe((params) =>
-      beforeloadCallBack(params, () => {
+      this.beforeloadCallBack(params, () => {
         return params.url;
       })
     );
