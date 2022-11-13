@@ -5,6 +5,11 @@ const config: CapacitorConfig = {
   appName: 'HustMedia',
   webDir: 'dist',
   bundledWebRuntime: false ,
+  "server": {
+    "allowNavigation": [
+      "hust.media" , "*.hust.media"
+    ]
+  },
   plugins: {
     SplashScreen: {
       launchShowDuration: 2000,
