@@ -16,7 +16,7 @@
           <ion-icon :icon="analytics" />
           <ion-label>Cài đặt</ion-label>
         </ion-tab-button>
-        <ion-tab-button tab="tab4" @click="gioithieu">
+        <ion-tab-button tab="openapp" href="/tabs/openapp">
           <ion-icon :icon="square" />
           <ion-label>Giới thiệu</ion-label>
         </ion-tab-button>

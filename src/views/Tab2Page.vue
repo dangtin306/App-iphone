@@ -1,5 +1,5 @@
 <template>
-  <ion-page>
+  <ion-page ref="page">
     <ion-header>
       <ion-toolbar>
         <ion-title>Edit Biolink</ion-title>
@@ -18,11 +18,11 @@
     
        <div class="text-center">
       <button  @click="click2" 
-      ref="addlink"  id="addlink" expand="block" class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+     id="addlink" expand="block" class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
         + Add to link
       </button> 
       <button @click="click" 
-      ref="Socials" id="Socials" expand="block" class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+     id="Socials" expand="block" class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
         + Add a social
       </button></div>
 
@@ -195,6 +195,7 @@ export default {
       IonPage,
   } ,
   data (){ return {
+        presentingElement: undefined,
     message: 'This modal example uses triggers to automatically open a modal when the button is clicked.',
               name : '',
               age : '',
@@ -329,8 +330,8 @@ await setDoc(doc(db, this.username ,  this.inputaddlink ), {
          [this.inputmota]: this.username 
        }, { merge: true })
        },
-      onTermsChanged() {
-      
+       onTermsChanged( CheckboxCustomEvent) {
+        this.canDismiss = CheckboxCustomEvent.detail.checked;
       },
       luulink(addlink)
             {

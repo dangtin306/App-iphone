@@ -30,6 +30,10 @@ const routes = [
         component: () => import('@/views/contact.vue')
       },
       {
+        path: 'openapp',
+        component: () => import('@/views/openapp.vue')
+      },
+      {
         path: 'tab1',
         component: () => import('@/views/Tab1Page.vue')
       },
