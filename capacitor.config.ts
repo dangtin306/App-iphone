@@ -7,6 +7,7 @@ const config: CapacitorConfig = {
   bundledWebRuntime: false ,
   "server": {
     "allowNavigation": [
+      "localhost",
       "hust.media" , "*.hust.media"
     ]
   },

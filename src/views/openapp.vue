@@ -9,7 +9,7 @@
   
   <script>
 
-  import { InAppBrowser  } from "@ionic-native/in-app-browser";
+  import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
   import { IonTabs, IonPage, IonRouterOutlet } from '@ionic/vue';
   import { Storage } from '@ionic/storage';
   export default {
@@ -52,6 +52,8 @@
                   hideurlbar : 'yes' ,
                   toolbar: 'yes' ,
                   toolbartranslucent: 'no' ,
+                  enableViewportScale: 'yes' ,
+                  fullscreen: 'no'
                   toolbarposition : 'bottom' 
 
               }
@@ -73,6 +75,7 @@
           return params.url;
         })
       );
+      browser.close();
       },
       getLocalStorage(index) {
       return this.localStorage.get(index);

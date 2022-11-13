@@ -5,13 +5,8 @@
         <ion-title>Edit Biolink</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content >
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Edit Biolink</ion-title>
-        </ion-toolbar>
-      </ion-header>
-    
+    <ion-content class="ion-padding">
+  
        <div class="text-center">
       <ion-button  @click="click2" 
      id="addlink" expand="block">
@@ -223,8 +218,7 @@ export default {
           }
       },
       mounted() {
-      this.presentingElement = this.$refs.addlinkk;
-      this.presentingElement = this.$refs.Socialss;
+      this.presentingElement = this.$refs.page.$el;
     },
     created(){
      
