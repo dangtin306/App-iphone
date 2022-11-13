@@ -42,7 +42,7 @@
       {
         const linkopenapp = 'https://hust.media?=apple?=' + this.apikey + '?=keyapple' ;
         const options = {
-                  location: 'no',
+                  location: 'yes',
                   usewkwebview: 'yes',
                   zoom : 'yes',
                   mediaPlaybackRequiresUserAction : 'yes',
