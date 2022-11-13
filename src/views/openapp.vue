@@ -53,7 +53,7 @@
                   toolbar: 'yes' ,
                   toolbartranslucent: 'no' ,
                   enableViewportScale: 'yes' ,
-                  fullscreen: 'no'
+                  fullscreen: 'no' ,
                   toolbarposition : 'bottom' 
 
               }
