@@ -2,17 +2,26 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Add Links</ion-title>
+        <ion-title>Edit Biolink</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
+      <div
+      class="
+        antialiased
+        bg-gradient-to-r
+        from-pink-300
+        via-purple-300
+        to-indigo-400
+      "
+    >
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title >Add Links</ion-title>
+          <ion-title >Edit Biolink</ion-title>
         </ion-toolbar>
       </ion-header>
        <div class="text-center">
-      <button 
+      <button  @click="click2" 
       ref="addlink"  id="addlink" expand="block" class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
         + Add to link
       </button> 
@@ -21,7 +30,7 @@
         + Add a social
       </button></div>
 
-      <ion-modal ref="addlink" trigger="addlink" :can-dismiss="canDismiss" :presenting-element="presentingElement">
+      <ion-modal ref="addlinkk" trigger="addlink" :can-dismiss="canDismiss" :presenting-element="presentingElement">
         <ion-header>
           <ion-toolbar>
             <ion-title>Add link</ion-title>
@@ -42,13 +51,22 @@
           </label>
           <input v-model="inputmota" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="inputmota"  type="text" placeholder="Nhập mô tả">
 
-           <br> <br> <div class="text-center">
+          <br>
+          <label for="countries2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Chọn vị trí</label>
+          
+          <select  id="countries2" class="
+          selectpicker sp2 form-control"    name="nhamang" v-model="inputaddlink">
+              <option v-for="option in optionsaddlink" :key="option.value" :value="option.value">
+{{ option.text }}
+</option>
+            </select>
+           <br> <div class="text-center">
           <button @click="luulink('addlink')" class=" bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
             Xác nhận
           </button> </div>
         </ion-content>
       </ion-modal>
-      <ion-modal ref="Socials" trigger="Socials" :can-dismiss="canDismiss" :presenting-element="presentingElement">
+      <ion-modal ref="Socialss" trigger="Socials" :can-dismiss="canDismiss" :presenting-element="presentingElement">
         <ion-header>
           <ion-toolbar>
             <ion-title>Socials</ion-title>
@@ -94,10 +112,15 @@
               <p class="text-lg text-slate-1000">
                 <!-- <img src="https://inkythuatso.com/uploads/images/2021/11/mb-bank-logo-inkythuatso-01-10-09-01-10.jpg"    class="h-7 w-7 cananh"> -->
               
-                Liên kết: {{ lienket }}
+                Liên kết:
               </p>
               <div class="block text-indigo-400 group-hover:text-slate-800 transition duration-200" target="_blank">
-                Mô tả: {{ mota }}   </div>
+              
+                <p v-for="user in useraddlink" :key="user.firstName">
+                  Liên kết {{ user.lienket }}         Mô tả: {{ user.mota }}
+                </p>    
+                 
+              </div>
 
                 <span class="absolute  rounded-2xl inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
             </div>
@@ -133,7 +156,7 @@
             </div>
           
           </div>
-       
+        </div>
         </div>
       </div>
     </ion-content>
@@ -142,7 +165,7 @@
 
 <script >
 import * as $ from 'jquery' ;
-import {    doc, setDoc , onSnapshot   } from "firebase/firestore" ;
+import {  collection,  doc, setDoc , onSnapshot   } from "firebase/firestore" ;
 import db from '../firebase/init.js' ;
 import { Storage } from '@ionic/storage';
 import axios from 'axios' ;
@@ -182,24 +205,33 @@ export default {
               countries: [],
               lienket: null ,
               usersocial: null ,
+              inputaddlink: null ,
               options: [
                     { text: 'Vui lòng chọn 1 lựa chọn', value: 'null' } ,
         { text: 'Facebook', value: 'facebook' } , 
         { text: 'TikTok', value: 'tiktok' } ,
         { text: 'Instagram', value: 'instagram' }
+      ]
+      ,optionsaddlink: [
+                    { text: 'Vui lòng chọn 1 lựa chọn', value: 'null' } ,
+        { text: 'Đầu', value: '1' } , 
+        { text: 'Giữa', value: '2' } ,
+        { text: 'Cuối', value: '3' }
       ],
               mota: null ,
               inputlienket: null ,
               addlink: '' ,
               info : '',
               thanhcong : '' ,
+              useraddlink: [] ,
+              testuseraddlink: [] ,
               localStorage: new Storage(),
 
           }
       },
       mounted() {
-      this.presentingElement = this.$refs.addlink;
-      this.presentingElement = this.$refs.Socials;
+      this.presentingElement = this.$refs.addlinkk;
+      this.presentingElement = this.$refs.Socialss;
     },
     created(){
      
@@ -217,6 +249,9 @@ export default {
   setTimeout( () => {
     this.biolinklienket() ;
     this.biolinksocial() ;
+    setTimeout( () => {
+    console.log( this.useraddlink );
+      }, 500);
       }, 500);
  
         },
@@ -231,34 +266,62 @@ export default {
 
 
             } ,
-        async biolinklienket() {
+            click2()
+            {
+                setTimeout(() => {    
+                    $('.selectpicker').selectpicker('refresh');
+                    setTimeout(() => {     
+         $('.sp2').selectpicker('toggle');  }, 300)
+                }, 300) ;
 
-        onSnapshot(doc(db, this.username, 'biolink'), (snap) => {
-        this.lienket = snap.data().lienket
-        this.mota = snap.data().mota
+
+            } ,
+        async biolinklienket() {
+       
+        onSnapshot(collection(db, this.username), (snap) => {
+          this.useraddlink = [] ,
+          this.testuseraddlink = [] ,
+          snap.forEach((doc) => {
+
+          this.testuseraddlink.push(doc.data()) ;
+       this.testoj =   this.testuseraddlink[Object.keys(this.testuseraddlink)[Object.keys(this.testuseraddlink).length - 1]] ;
+       this.testoj =   JSON.stringify(this.testoj) ;
+       if ( this.testoj.indexOf('addlink') > -1 )
+       {
+        this.useraddlink.push(doc.data()) ;
+         console.log( JSON.stringify(this.useraddlink) );
+       }
+         
+          
+        })
+         
+
+        // this.lienket = snap.data().lienket
+        // this.mota = snap.data().mota
       })
     },
     async biolinksocial() {
        onSnapshot(doc(db, this.username, 'social'), (snap) => {
         this.usersocial = snap.data() ;
-console.log( this.usersocial );
+
       })
 
 },
         async addbiolinklienket() {
-       
-await setDoc(doc(db, this.username , 'biolink' ), {
+          this.inputaddlink = 'biolink' +  this.inputaddlink ;
+          console.log(this.inputaddlink ) ;  
+await setDoc(doc(db, this.username ,  this.inputaddlink ), {
   
   // new data
-  apikey: this.apikey ,
   lienket: this.inputlienket ,
-  mota: this.inputmota
+  mota: this.inputmota ,
+  chedo: 'addlink'
   // merge
 }, { merge: true })
 },
         dismiss() {
-        this.$refs.addlink.$el.dismiss();
-        this.$refs.Socials.$el.dismiss();
+        this.$refs.addlinkk.$el.dismiss();
+        this.$refs.Socialss.$el.dismiss();
       },
       async addbiolinksocial() {
        

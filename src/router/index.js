@@ -26,6 +26,10 @@ const routes = [
         redirect: '/tabs/tab1'
       },
       {
+        path: 'contact',
+        component: () => import('@/views/contact.vue')
+      },
+      {
         path: 'tab1',
         component: () => import('@/views/Tab1Page.vue')
       },

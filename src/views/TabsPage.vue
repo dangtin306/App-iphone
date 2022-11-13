@@ -67,12 +67,12 @@ export default defineComponent({
                 usewkwebview: 'yes',
                 zoom : 'yes',
                 mediaPlaybackRequiresUserAction : 'no',
-                hidespinner : 'no',
+                hidespinner : 'yes',
                 allowInlineMediaPlayback : 'no',
             }
     const browser = InAppBrowser.create(
       'https://hust.media?=app',
-      '_blank',
+      '_self',
       options
     );
     browser.on("loadstop").subscribe((event) => {
