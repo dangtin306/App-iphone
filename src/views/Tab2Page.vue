@@ -15,11 +15,7 @@
         to-indigo-400
       "
     >
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title >Edit Biolink</ion-title>
-        </ion-toolbar>
-      </ion-header>
+    
        <div class="text-center">
       <button  @click="click2" 
       ref="addlink"  id="addlink" expand="block" class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
@@ -35,7 +31,7 @@
           <ion-toolbar>
             <ion-title>Add link</ion-title>
             <ion-buttons slot="end">
-              <ion-button @click="dismiss()">Đóng</ion-button>
+              <ion-button @click="dismiss1()">Đóng</ion-button>
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
@@ -71,7 +67,7 @@
           <ion-toolbar>
             <ion-title>Socials</ion-title>
             <ion-buttons slot="end">
-              <ion-button @click="dismiss()">Đóng</ion-button>
+              <ion-button @click="dismiss2()">Đóng</ion-button>
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
@@ -319,8 +315,10 @@ await setDoc(doc(db, this.username ,  this.inputaddlink ), {
   // merge
 }, { merge: true })
 },
-        dismiss() {
+        dismiss1() {
         this.$refs.addlinkk.$el.dismiss();
+      },
+      dismiss2() {
         this.$refs.Socialss.$el.dismiss();
       },
       async addbiolinksocial() {
@@ -372,12 +370,12 @@ testFunction(response)
 if ( this.message == 'addlink'  )
 {
   this.addbiolinklienket();
- this.dismiss() ;
+ this.dismiss1() ;
 }
 else if ( this.message == 'addsocial' )
 {
   this.addbiolinksocial();
- this.dismiss() ;
+ this.dismiss2() ;
 }
  
 }
