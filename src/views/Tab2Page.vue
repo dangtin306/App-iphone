@@ -5,26 +5,22 @@
         <ion-title>Edit Biolink</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content :fullscreen="true">
-      <div
-      class="
-        antialiased
-        bg-gradient-to-r
-        from-pink-300
-        via-purple-300
-        to-indigo-400
-      "
-    >
+    <ion-content >
+      <ion-header collapse="condense">
+        <ion-toolbar>
+          <ion-title size="large">Edit Biolink</ion-title>
+        </ion-toolbar>
+      </ion-header>
     
        <div class="text-center">
-      <button  @click="click2" 
-     id="addlink" expand="block" class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+      <ion-button  @click="click2" 
+     id="addlink" expand="block">
         + Add to link
-      </button> 
-      <button @click="click" 
-     id="Socials" expand="block" class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+      </ion-button> 
+      <ion-button @click="click" 
+     id="Socials" expand="block" >
         + Add a social
-      </button></div>
+      </ion-button></div>
 
       <ion-modal ref="addlinkk" trigger="addlink" :can-dismiss="canDismiss" :presenting-element="presentingElement">
         <ion-header>
@@ -154,7 +150,7 @@
           </div>
         </div>
         </div>
-      </div>
+   
     </ion-content>
   </ion-page>
 </template>

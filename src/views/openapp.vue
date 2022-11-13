@@ -11,12 +11,13 @@
 
   import { InAppBrowser  } from "@ionic-native/in-app-browser";
   import { IonTabs, IonPage, IonRouterOutlet } from '@ionic/vue';
-
+  import { Storage } from '@ionic/storage';
   export default {
     name: 'openappPage',
     components: { IonTabs, IonPage, IonRouterOutlet },
     data() {
       return {
+        localStorage: new Storage(),
       }
     },
     methods:
@@ -39,16 +40,23 @@
   },
   gioithieu()
       {
+        const linkopenapp = 'https://hust.media?=apple?=' + this.apikey + '?=keyapple' ;
         const options = {
                   location: 'no',
                   usewkwebview: 'yes',
                   zoom : 'yes',
-                  mediaPlaybackRequiresUserAction : 'no',
+                  mediaPlaybackRequiresUserAction : 'yes',
                   hidespinner : 'yes',
-                  allowInlineMediaPlayback : 'no',
+                  footer : 'yes',
+                  hidenavigationbuttons : 'no' ,
+                  hideurlbar : 'yes' ,
+                  toolbar: 'yes' ,
+                  toolbartranslucent: 'no' ,
+                  toolbarposition : 'bottom' 
+
               }
       const browser = InAppBrowser.create(
-        'https://hust.media?=app',
+        linkopenapp ,
         '_self',
         options
       );
@@ -65,10 +73,21 @@
           return params.url;
         })
       );
-      }} ,
+      },
+      getLocalStorage(index) {
+      return this.localStorage.get(index);
+    }} ,
   created()
       {
-        this.gioithieu();
+        this.localStorage.create();
+        this.apikey = this.getLocalStorage('apikey') ;
+        Promise.all([this.apikey]).then((arrayOfResults) => {
+    this.apikey=arrayOfResults[0]; 
+  });
+        setTimeout( () => {
+    console.log( this.gioithieu() );
+      }, 500);
+    
       }
     
   };
