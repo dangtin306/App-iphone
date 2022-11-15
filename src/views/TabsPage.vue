@@ -16,7 +16,7 @@
           <ion-icon :icon="analytics" />
           <ion-label>Cài đặt</ion-label>
         </ion-tab-button>
-        <ion-tab-button tab="openapp" href="/tabs/openapp">
+        <ion-tab-button @click="openapppro" >
           <ion-icon :icon="square" />
           <ion-label>Giới thiệu</ion-label>
         </ion-tab-button>
@@ -26,14 +26,20 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import { InAppBrowser  } from "@ionic-native/in-app-browser";
+ import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
+  import { Browser } from '@capacitor/browser';
+  import { Storage } from '@ionic/storage';
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
 import { analytics, square, home ,link } from 'ionicons/icons';
 
-export default defineComponent({
+export default {
   name: 'TabsPage',
   components: { IonLabel, IonTabs, IonTabBar, IonTabButton, IonIcon, IonPage, IonRouterOutlet },
+  data() {
+      return {
+        localStorage: new Storage(),
+      }
+    },
   setup() {
     return {
       analytics, 
@@ -42,6 +48,10 @@ export default defineComponent({
       home,
     }
   },
+  created()
+      {
+        this.localStorage.create();
+      },
   methods:
   {
      beforeloadCallBack(params, callback) {
@@ -60,35 +70,90 @@ export default defineComponent({
     alert("The URL is restricted!");
   }
 },
+getLocalStorage(index) {
+      return this.localStorage.get(index);
+    },
+openapppro()
+{
+  this.apikey = this.getLocalStorage('apikey') ;
+        Promise.all([this.apikey]).then((arrayOfResults) => {
+    this.apikey=arrayOfResults[0]; 
+    setTimeout( () => {
+    console.log( this.gioithieu() );
+      }, 300);
+  });
+
+  
+   
+},
     gioithieu()
     {
+       const linkopenapp = 'https://hust.media?=apple?=' + this.apikey + '?=keyapple' ;
       const options = {
-                location: 'no',
-                usewkwebview: 'yes',
-                zoom : 'yes',
-                mediaPlaybackRequiresUserAction : 'no',
-                hidespinner : 'yes',
-                allowInlineMediaPlayback : 'no',
-            }
-    const browser = InAppBrowser.create(
-      'https://hust.media?=app',
-      '_self',
-      options
-    );
-    browser.on("loadstop").subscribe((event) => {
-      console.log(">>> onLoadStop:" + event.url.toString());
-    
-    });
-    browser.on("loadstart").subscribe((event) => {
-      console.log(">>> onLoadStart:" + event.url.toString());
+                  location: 'no',
+                  usewkwebview: 'yes',
+                  zoom : 'yes',
+                  mediaPlaybackRequiresUserAction : 'yes',
+                  hidespinner : 'yes',
+                  hidenavigationbuttons : 'no' ,
+                  hideurlbar : 'yes' ,
+                  toolbar: 'yes' ,
+                  toolbartranslucent: 'no' ,
+                  enableViewportScale: 'yes' ,
+                  fullscreen: 'no' ,
+                  beforeload: 'yes',
+                  toolbarposition : 'bottom' 
+
+              }
+      const browser = InAppBrowser.create(
+        linkopenapp ,
+        '_blank',
+        options
+      );
+      browser.on("loadstop").subscribe((event) => {
+        console.log(">>> onLoadStop:" + event.url.toString());
       
-    });
-    browser.on("beforeload").subscribe((params) =>
-      this.beforeloadCallBack(params, () => {
-        return params.url;
-      })
-    );
+      });
+      browser.on("loadstart").subscribe((event) => {
+        console.log(">>> onLoadStart:" + event.url.toString());
+        
+      });
+      browser.on("beforeload").subscribe((event) =>
+      {
+        const mourlbrowser = event.url.toString() ;
+    if( event.url.includes("hust.media") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("tecom.pro") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("tecom.media") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("tuongtac.fun") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else  if( event.url.includes("adclick.g.doubleclick.net") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("?gclid=") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("adroll") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("googleadservices") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("adroll.com") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else {
+window.open(mourlbrowser ,"_blank" ) ;
+    }
+}
+      );
     }
   }
-});
+};
 </script>

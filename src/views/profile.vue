@@ -1,5 +1,5 @@
 <template>
-    <ion-page>
+  <ion-page ref="page">
       <ion-header>
         <ion-toolbar>
             <ion-buttons slot="start">
@@ -8,12 +8,7 @@
             <ion-title>Cài đặt tài khoản </ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content :fullscreen="false">
-        <ion-header collapse="condense">
-          <ion-toolbar>
-            <ion-title size="large">Tài khoản </ion-title>
-          </ion-toolbar>
-        </ion-header>
+      <ion-content >
         <div
         class="
           antialiased
@@ -23,6 +18,12 @@
           to-indigo-400
         "
       >
+        <ion-header collapse="condense">
+          <ion-toolbar>
+            <ion-title size="large">Tài khoản </ion-title>
+          </ion-toolbar>
+        </ion-header>
+       
         <ion-scroll direction="y" class="theroot">
       <div class="ml-3 h-7 flex justify-end items-center">
         <!-- <button type="button"
@@ -200,9 +201,10 @@
                     </button>
             </div>
         </div>
-        <div class="col-span-1  p-3">
+        <div @click="click3" class="col-span-1  p-3">
             <div class="flex flex-col items-center ">
-                <a :href="'https://vip.hust.media/themsdt?=key=' + apikey" > <button class="tr-300">
+                <!-- <a :href="'https://vip.hust.media/themsdt?=key=' + apikey" >-->
+                   <button class="tr-300"> 
                         <svg xmlns="http://www.w3.org/2000/svg"
                             class="h-14 w-14 text-gray-500" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor"
@@ -211,7 +213,7 @@
                                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                         <span class="text-lg font-medium">Kết nối telegram</span>
-                    </button></a>
+                    </button>
             </div>
         </div>
         <div class="col-span-1 bg-red-50 p-3">
@@ -258,7 +260,7 @@ import * as $ from 'jquery' ;
   import Swal from 'sweetalert2' ;
   import { IonPage, IonHeader, IonToolbar,IonBackButton, IonTitle, IonContent } from '@ionic/vue';
   // import ExploreContainer from '@/components/ExploreContainer.vue';
-
+  import { Browser } from '@capacitor/browser';
   import './bootstrap2.min.js' ;
   import './bootstrap-select.css' ;
     import './bootstrap-select.min.css' ;
@@ -320,6 +322,11 @@ import * as $ from 'jquery' ;
 
         },
         methods : {
+          click3()
+          {
+            this.mowebapitelegram = 'https://vip.hust.media/themsdt?=key=' + this.apikey ;
+            Browser.open({ url: this.mowebapitelegram });
+          },
             logout()
             {
                 this.removeLocalStorage('username');
