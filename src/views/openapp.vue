@@ -10,6 +10,7 @@
   <script>
 
   import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
+  import { Browser } from '@capacitor/browser';
   import { IonTabs, IonPage, IonRouterOutlet } from '@ionic/vue';
   import { Storage } from '@ionic/storage';
   export default {
@@ -22,22 +23,22 @@
     },
     methods:
     {
-       beforeloadCallBack(params, callback) {
-    console.log(">>> beforeload: " + params.url.toString());
+  //      beforeloadCallBack(params, callback) {
+  //   console.log(">>> beforeload: " + params.url.toString());
   
-    if (params.url.includes("https://hust.media")) {
-      console.log(">>> beforeload: allowed");
-      callback(params.url);
-    }
-    else if (params.url.includes("https://vip.hust.media")) {
-      console.log(">>> beforeload: allowed");
-      callback(params.url);
-    }
-    else {
-      console.log(">>> beforeload: restricted");
-      alert("The URL is restricted!");
-    }
-  },
+  //   if (params.url.includes("https://hust.media")) {
+  //     console.log(">>> beforeload: allowed");
+  //     callback(params.url);
+  //   }
+  //   else if (params.url.includes("https://vip.hust.media")) {
+  //     console.log(">>> beforeload: allowed");
+  //     callback(params.url);
+  //   }
+  //   else {
+  //     console.log(">>> beforeload: restricted");
+  //     alert("The URL is restricted!");
+  //   }
+  // },
   gioithieu()
       {
         const linkopenapp = 'https://hust.media?=apple?=' + this.apikey + '?=keyapple' ;
@@ -47,13 +48,13 @@
                   zoom : 'yes',
                   mediaPlaybackRequiresUserAction : 'yes',
                   hidespinner : 'yes',
-                  footer : 'yes',
                   hidenavigationbuttons : 'no' ,
                   hideurlbar : 'yes' ,
                   toolbar: 'yes' ,
                   toolbartranslucent: 'no' ,
                   enableViewportScale: 'yes' ,
                   fullscreen: 'no' ,
+                  beforeload: 'yes',
                   toolbarposition : 'bottom' 
 
               }
@@ -70,10 +71,40 @@
         console.log(">>> onLoadStart:" + event.url.toString());
         
       });
-      browser.on("beforeload").subscribe((params) =>
-        this.beforeloadCallBack(params, () => {
-          return params.url;
-        })
+      browser.on("beforeload").subscribe((event) =>
+      {
+        const mourlbrowser = event.url.toString() ;
+    if( event.url.includes("hust.media") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("tecom.pro") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("tecom.media") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("tuongtac.fun") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else  if( event.url.includes("adclick.g.doubleclick.net") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("?gclid=") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("adroll") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("googleadservices") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("adroll.com") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else {
+window.open(mourlbrowser ,"_blank" ) ;
+    }
+}
       );
       browser.close();
       },
