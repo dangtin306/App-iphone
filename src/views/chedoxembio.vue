@@ -73,6 +73,7 @@
   </template>
   
   <script>
+   import { Browser } from '@capacitor/browser';
   import { Storage } from '@ionic/storage';
   import { IonPage, IonHeader, IonToolbar,IonBackButton, IonTitle, IonContent } from '@ionic/vue';
   import axios from 'axios' 
