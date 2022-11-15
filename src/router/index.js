@@ -30,6 +30,10 @@ const routes = [
         component: () => import('@/views/contact.vue')
       },
       {
+        path: 'chedoxembio',
+        component: () => import('@/views/chedoxembio.vue')
+      },
+      {
         path: 'openapp',
         component: () => import('@/views/openapp.vue')
       },

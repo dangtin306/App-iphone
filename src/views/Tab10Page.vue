@@ -69,12 +69,12 @@
               class="btn btn-outline-danger w-100">Máy tính </button>
             </router-link>
             <br><br>
-            <router-link style="text-decoration: none"  to="/tabs/tab7">
+            <!-- <router-link style="text-decoration: none"  to="/tabs/tab7">
 
               <button type="button"  
               class="btn btn-outline-danger w-100">Học Lý Thuyết Phép toán<br>cơ bản </button>
             </router-link>  
-            <br><br>
+            <br><br> -->
             <router-link style="text-decoration: none"  to="/tabs/tab9">
 
               <button type="button"  

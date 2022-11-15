@@ -35,7 +35,7 @@
   </div>
 </button>
 </router-link> 
-    <router-link style="text-decoration: none"  to="/tabs/biolink">
+    <router-link style="text-decoration: none"  to="/tabs/chedoxembio">
       <button type='button'
       class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>
       <div class='m-auto'>
@@ -81,7 +81,7 @@
               <div class='m-auto'>
                 <div class='flex items-center justify-start flex-1 space-x-4'>
                   
-                  <span class='font-medium mb-[-2px]'>Giải trí toán học</span>
+                  <span class='font-medium mb-[-2px]'>Game vui cùng các con số</span>
                   <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
                     <path d='M5 12h13M12 5l7 7-7 7' />
                     </svg>
