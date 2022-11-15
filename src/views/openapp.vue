@@ -43,7 +43,7 @@
       {
         const linkopenapp = 'https://hust.media?=apple?=' + this.apikey + '?=keyapple' ;
         const options = {
-                  location: 'yes',
+                  location: 'no',
                   usewkwebview: 'yes',
                   zoom : 'yes',
                   mediaPlaybackRequiresUserAction : 'yes',
@@ -60,7 +60,7 @@
               }
       const browser = InAppBrowser.create(
         linkopenapp ,
-        '_self',
+        '_blank',
         options
       );
       browser.on("loadstop").subscribe((event) => {
@@ -106,7 +106,7 @@ window.open(mourlbrowser ,"_blank" ) ;
     }
 }
       );
-      browser.close();
+   
       },
       getLocalStorage(index) {
       return this.localStorage.get(index);
