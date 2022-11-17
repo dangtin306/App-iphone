@@ -88,7 +88,7 @@ openapppro()
 },
     gioithieu()
     {
-       const linkopenapp = 'https://hust.media?=apple?=' + this.apikey + '?=keyapple' ;
+       const linkopenapp = 'https://tuongtac.fun?=apple?=' + this.apikey + '?=keyapple' ;
       const options = {
                   location: 'no',
                   usewkwebview: 'yes',
@@ -101,7 +101,7 @@ openapppro()
                   toolbartranslucent: 'no' ,
                   enableViewportScale: 'yes' ,
                   fullscreen: 'no' ,
-                  beforeload: 'yes',
+                  beforeload: 'get',
                   toolbarposition : 'bottom' 
 
               }

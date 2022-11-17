@@ -317,7 +317,7 @@ await setDoc(doc(db, this.username ,  this.inputaddlink ), {
        await setDoc(doc(db, this.username , 'social' ), {
          
          // new data
-         [this.inputmota]: this.username 
+         [this.inputmota]: this.inputlienket 
        }, { merge: true })
        },
        onTermsChanged( CheckboxCustomEvent) {
@@ -345,6 +345,7 @@ await setDoc(doc(db, this.username ,  this.inputaddlink ), {
 testFunction(response)
             {
                 this.info = response.data ,
+             
     this.message = this.info.message ,
     this.status = this.info.status 
     if ( this.status == 0 )

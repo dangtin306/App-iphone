@@ -8,7 +8,7 @@
             <ion-title>Cài đặt tài khoản </ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content >
+      <ion-content :fullscreen="true">
         <div
         class="
           antialiased
@@ -24,7 +24,7 @@
           </ion-toolbar>
         </ion-header>
        
-        <ion-scroll direction="y" class="theroot">
+        <!-- <ion-scroll direction="y" class="theroot"> -->
       <div class="ml-3 h-7 flex justify-end items-center">
         <!-- <button type="button"
             class="bg-gray-100 dark:bg-gray-700 m-1 p-3 justify-end rounded-md text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500">
@@ -94,7 +94,7 @@
                           <label for="countries2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Chọn lựa chọn</label>
           
                     <select  id="countries2" class="
-                    selectpicker sp1 form-control"    name="nhamang" v-model="chedoprofile">
+                    selectpicker sp1 form-control"  @change="onChange()"   name="nhamang" v-model="chedoprofile">
                         <option v-for="option in options" :key="option.value" :value="option.value">
     {{ option.text }}
   </option>
@@ -104,9 +104,13 @@
                     
                         </div>
                       </div>
+       <div v-if="chedoappleprofile != 1 ">
+
+        <p>Tên tài khoản hoặc mật khẩu cần thay</p>
+        <input class="form-control form-control-alternative" v-model="lienketchay" placeholder="Nhập cái bạn cần nhé =)))" />
        
-                      <p>Tên tài khoản hoặc mật khẩu cần thay</p>
-                      <input class="form-control form-control-alternative" v-model="lienketchay" placeholder="Nhập cái bạn cần nhé =)))" />
+       </div>
+                   
                       <div v-if="thanhcong">  
     <div class="relative py-3 sm:max-w-xl sm:mx-auto">
       <div class="flex flex-col items-center justify-center py-2">
@@ -189,7 +193,7 @@
         <div class="col-span-1  p-3">
             <div class="flex flex-col items-center ">
              
-                    <button class="tr-300">
+                    <button @click="click('xoatk')" class="tr-300">
                         <svg xmlns="http://www.w3.org/2000/svg"
                             class="h-14 w-14 text-gray-500" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor"
@@ -197,7 +201,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
-                        <span class="text-lg font-medium">Thống kê giới thiệu( tính năng chưa có trên app iphone )</span>
+                        <span class="text-lg font-medium">Xóa tài khoản (delete account)</span>
                     </button>
             </div>
         </div>
@@ -237,7 +241,7 @@
                 class="p-2 shadow-lg rounded-2xl tr-300 w-100 font-medium  bg-green-500 rounded-md hover:bg-green-600 text-gray-50">
               Thăng cấp tài khoản </button> -->
     </div>
-</ion-scroll>
+<!-- </ion-scroll> -->
 
 </div>
 
@@ -276,11 +280,13 @@ import * as $ from 'jquery' ;
                 nutorder: 'Ấn đây để xác nhận' ,
                 inputlienket: null ,
                 apikey: null ,
+                chedoappleprofile: null ,
                 options: [
                     { text: 'Vui lòng chọn 1 lựa chọn', value: 'vuilongchon1cai' } ,
         { text: 'Thay mật khẩu', value: 'password' } , 
         { text: 'Lấy api key', value: 'apikey' } ,
-        { text: 'Thay tên tài khoản', value: 'username' }
+        { text: 'Thay tên tài khoản', value: 'username' } ,
+        { text: 'Xóa tài khoản (delete account)', value: 'xoataikhoan' }
       ],
                 lienketoutput: null ,
                 thanhcong2: null ,
@@ -322,6 +328,16 @@ import * as $ from 'jquery' ;
 
         },
         methods : {
+          onChange() {
+
+    if ( this.chedoprofile == 'xoataikhoan' || this.chedoprofile == 'apikey' )
+    {
+this.chedoappleprofile = 1 ;
+    }
+    else{
+      this.chedoappleprofile = 0 ;
+    }
+    },
           click3()
           {
             this.mowebapitelegram = 'https://vip.hust.media/themsdt?=key=' + this.apikey ;
@@ -400,7 +416,11 @@ this.nutxuly = 0 ,
 this.info = response.data ,
       this.status = this.info.status     ,
       this.message = this.info.message  
-      if ( this.status == 0  )
+      if ( this.message == 'deleteaccount'  )
+      {
+      this.logout();
+      }
+  else    if ( this.status == 0  )
       {
         Swal.fire({
   title: this.message ,
