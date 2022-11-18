@@ -13,7 +13,7 @@
           <ion-label>Liên Kết</ion-label>
         </ion-tab-button>
         <ion-tab-button tab="profile" href="/tabs/profile">
-          <ion-icon :icon="analytics" />
+          <ion-icon :icon="settings" />
           <ion-label>Cài đặt</ion-label>
         </ion-tab-button>
         <ion-tab-button @click="openapppro" >
@@ -30,7 +30,7 @@
   import { Browser } from '@capacitor/browser';
   import { Storage } from '@ionic/storage';
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { analytics, square, home ,link } from 'ionicons/icons';
+import { settings, square, home ,link } from 'ionicons/icons';
 
 export default {
   name: 'TabsPage',
@@ -42,7 +42,7 @@ export default {
     },
   setup() {
     return {
-      analytics, 
+      settings, 
       square, 
       link,
       home,
@@ -88,7 +88,7 @@ openapppro()
 },
     gioithieu()
     {
-       const linkopenapp = 'https://tuongtac.fun?=apple?=' + this.apikey + '?=keyapple' ;
+       const linkopenapp = 'https://tuongtac.fun/aboutus2.php?=apple?=' + this.apikey + '?=keyapple' ;
       const options = {
                   location: 'no',
                   usewkwebview: 'yes',
