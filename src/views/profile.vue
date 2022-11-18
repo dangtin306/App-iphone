@@ -1,3 +1,8 @@
+<style>
+.webkit-center {
+text-align: -webkit-center; 
+}
+</style>
 <template>
   <ion-page ref="page">
       <ion-header>
@@ -190,17 +195,18 @@
                     </button></div> 
             </div>
         </div>
+   
         <div class="col-span-1  p-3">
             <div class="flex flex-col items-center ">
              
                     <button @click="click('xoatk')" class="tr-300">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            class="h-14 w-14 text-gray-500" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor"
-                            stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
+                      <div class="webkit-center">
+
+                        <img
+                        src="https://cdn-icons-png.flaticon.com/512/2807/2807980.png"
+                        class=" h-14 w-14 text-gray-500">
+                      </div>
+                     
                         <span class="text-lg font-medium">Xóa tài khoản (delete account)</span>
                     </button>
             </div>
