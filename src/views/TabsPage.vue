@@ -53,7 +53,7 @@ export default {
       {
         this.localStorage.create();
 this.initialize();
-
+this.showInterstitial();
       },
   methods:
   {
