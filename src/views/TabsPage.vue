@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import {  AdMob  } from '@capacitor-community/admob';
  import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
   import { Browser } from '@capacitor/browser';
   import { Storage } from '@ionic/storage';
@@ -51,9 +52,36 @@ export default {
   created()
       {
         this.localStorage.create();
+this.initialize();
+
       },
   methods:
   {
+    async showInterstitial()  {
+  
+      var options = {
+    adId: 'YOUR ADID',
+    isTesting: true
+    // npa: true
+};
+
+  await AdMob.prepareInterstitial(options);
+  await AdMob.showInterstitial();
+},
+       async initialize() {
+  const { status } = await AdMob.trackingAuthorizationStatus();
+
+  if (status === 'notDetermined') {
+    console.log('Display info before ads load first time')
+  }
+ 
+  AdMob.initialize({
+    requestTrackingAuthorization: true,
+    testingDevices: ['YOURTESTDEVICECODE'],
+    initializeForTesting: true,
+  });
+  console.log(['YOURTESTDEVICECODE']);
+    },
      beforeloadCallBack(params, callback) {
   console.log(">>> beforeload: " + params.url.toString());
 

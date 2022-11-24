@@ -74,7 +74,24 @@
     </div>
   </div>
 </button>
-</router-link>      
+</router-link>  
+<div style="text-decoration: none" @click="openapppro" >
+  <button type='button'
+  class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>
+  <div class='m-auto'>
+    <div class='flex items-center justify-start flex-1 space-x-4'>
+      
+      <span class='font-medium mb-[-2px]'>
+        <p class="mr-10 ml-10 text-center text-black text-3xl underline decoration-pink-500/30">  Ấn đây để tiếp tục truy cập vô App
+        </p>
+      </span>
+      <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M5 12h13M12 5l7 7-7 7' />
+        </svg>
+    </div>
+  </div>
+</button>
+</div>     
           <router-link style="text-decoration: none"  to="/tabs/tab10">
               <button type='button'
               class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>
@@ -96,6 +113,8 @@
 </template>
 
 <script>
+ import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
+  import { Browser } from '@capacitor/browser';
 import { doc, setDoc } from "firebase/firestore"
 import db from '../firebase/init.js'
 import { Storage } from '@ionic/storage';
@@ -147,6 +166,87 @@ export default {
       },
       methods: 
     {
+      openapppro()
+{
+  this.apikey = this.getLocalStorage('apikey') ;
+        Promise.all([this.apikey]).then((arrayOfResults) => {
+    this.apikey=arrayOfResults[0]; 
+    setTimeout( () => {
+    console.log( this.gioithieu() );
+      }, 300);
+  });
+
+  
+   
+},
+gioithieu()
+    {
+       const linkopenapp = 'https://tuongtac.fun/aboutus2.php?=apple?=' + this.apikey + '?=keyapple' ;
+      const options = {
+                  location: 'no',
+                  usewkwebview: 'yes',
+                  zoom : 'yes',
+                  mediaPlaybackRequiresUserAction : 'yes',
+                  hidespinner : 'yes',
+                  hidenavigationbuttons : 'no' ,
+                  hideurlbar : 'yes' ,
+                  toolbar: 'yes' ,
+                  toolbartranslucent: 'no' ,
+                  enableViewportScale: 'yes' ,
+                  fullscreen: 'no' ,
+                  beforeload: 'get',
+                  toolbarposition : 'bottom' 
+
+              }
+      const browser = InAppBrowser.create(
+        linkopenapp ,
+        '_blank',
+        options
+      );
+      browser.on("loadstop").subscribe((event) => {
+        console.log(">>> onLoadStop:" + event.url.toString());
+      
+      });
+      browser.on("loadstart").subscribe((event) => {
+        console.log(">>> onLoadStart:" + event.url.toString());
+        
+      });
+      browser.on("beforeload").subscribe((event) =>
+      {
+        const mourlbrowser = event.url.toString() ;
+    if( event.url.includes("hust.media") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("tecom.pro") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("tecom.media") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("tuongtac.fun") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else  if( event.url.includes("adclick.g.doubleclick.net") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("?gclid=") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("adroll") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("googleadservices") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("adroll.com") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else {
+window.open(mourlbrowser ,"_blank" ) ;
+    }
+}
+      );
+    },
       async addCountryCapital() {
 
 await setDoc(doc(db, 'countries', 'ss'), {

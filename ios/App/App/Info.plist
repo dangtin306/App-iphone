@@ -2,10 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<key>GADIsAdManagerApp</key>
+<true/>
+<key>GADApplicationIdentifier</key>
+<string>ca-app-pub-4574266110812955~1448417305</string>
+<key>SKAdNetworkItems</key>
+<array>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>cstr6suwn9.skadnetwork</string>
+  </dict>
+</array>
+<key>NSUserTrackingUsageDescription</key>
+<string>Mã điện thoại Giúp tối ưu hơn trong hiển thị quảng cáo </string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>myApp</string>
+	<string>Hust Media</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
