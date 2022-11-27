@@ -135,6 +135,7 @@
     <script>
  import { IonPage, IonHeader,IonBackButton, IonTitle, IonContent } from '@ionic/vue';
  import axios from 'axios' ;
+ import { Storage } from '@ionic/storage';
  import Swal from 'sweetalert2' ;
          export default {
             components: {  IonHeader , IonTitle, IonBackButton,IonContent, IonPage } ,

@@ -120,6 +120,7 @@ import {  AdMob  } from '@capacitor-community/admob';
 import { doc, setDoc } from "firebase/firestore"
 import db from '../firebase/init.js'
 import { Storage } from '@ionic/storage';
+
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
 import axios from 'axios' 
 export default {
@@ -138,18 +139,25 @@ export default {
       capital: ''
       }} ,
       watch: {
-    $route() {
-      setTimeout( () => {
+        
+    $route(to, from) {
+      console.log(from) ;
+      console.log(to) ;
+      if (to.path == '/tabs/tab1'){ 
+        setTimeout( () => {
         this.localStorage.create();
         this.apikey = this.getLocalStorage('apikey') ;
         Promise.all([this.apikey]).then((arrayOfResults) => {
     this.apikey=arrayOfResults[0]; 
     console.log(this.apikey);
-    if ( this.apikey == null || this.apikey == '')
+    if ( this.apikey == null )
         {
-        //    
-      }   
- 
+          this.$router.push('authentication') ;
+         }   
+       else if ( this.apikey == '' )
+        {
+          this.$router.push('authentication') ;
+         }   
          else
          {
           this.openapppro2() ;
@@ -159,9 +167,17 @@ export default {
 
       }, 300);
     
+}
+//       router.beforeEach((to, from, next) => {
+//     console.log(`Navigating to: ${to.name}`);
+//     next();
+// });
+      
     },
   },
+  
       created(){
+        // alert(this.foo) ;
         this.addCountryCapital();
         this.localStorage.create();
         this.username = this.getLocalStorage('username') ;
@@ -171,11 +187,11 @@ export default {
     console.log(this.apikey);
     if ( this.apikey == null )
         {
-          this.$router.push('auth') ;
+          this.$router.push('authentication') ;
          }   
        else if ( this.apikey == '' )
         {
-          this.$router.push('auth') ;
+          this.$router.push('authentication') ;
          }   
   });
   Promise.all([this.username]).then((arrayOfResults) => {
@@ -183,11 +199,11 @@ export default {
     console.log(this.username);
     if ( this.username == null )
         {
-          this.$router.push('auth') ;
+          this.$router.push('authentication') ;
          }   
        else if ( this.username == '' )
         {
-          this.$router.push('auth') ;
+          this.$router.push('authentication') ;
          }   
   });
   setTimeout( () => {
@@ -195,6 +211,7 @@ export default {
       }, 700);
    
       },
+      
       methods: 
     {
       openapppro2()
@@ -266,7 +283,7 @@ await AdMob.showInterstitial();
 },
 gioithieu()
     {
-      this.openapppro2() ;
+  
      
         const linkopenapp = 'https://tuongtac.fun/aboutus2.php?=apple?=' + this.apikey + '?=keyapple' ;
       const options = {
@@ -371,48 +388,7 @@ await setDoc(doc(db, 'countries', 'ss'), {
             this.chay2()
       }, 100);
         },
-        chay2()
-        {
-          if(!this.picked){
-                    alert('Please Add a Number')
-                    return
-                }
-                else
-                {
-                  
-                  this.url = 'https://numbersapi.p.rapidapi.com/' + this.picked + '/math' ;
-               
-                  const options = {
-  method: 'GET',
-  url: this.url ,
-  params: {fragment: 'true', json: 'true'},
-  headers: {
-    'X-RapidAPI-Key': '2163a7c370msh7888978aa0a7eb7p1e4fd5jsn1170303e165b',
-    'X-RapidAPI-Host': 'numbersapi.p.rapidapi.com'
-  }
-};
-
-axios.request(options).then(response => {
-  console.log(response.data);
-this.thanhcong = response.data.text ; 
-console.log(this.thanhcong);
-this.traloiso = 'ok' ;
-document.getElementById("demo").innerHTML = this.thanhcong ;
-        console.log('Text: %o', this.myHtmlCode );
-       
-  
-}
-
-).catch(function (error) {
-	console.error(error);
-  
-})
-
-;
-
-                }
-
-        }
+      
       },
     
 };

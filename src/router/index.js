@@ -108,5 +108,7 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-
+// router.beforeEach((to, from) => { if (to.path == '/tabs/tab1'){ 
+// console.log(from) ;
+// }}); 
 export default router
