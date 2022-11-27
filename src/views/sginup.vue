@@ -117,7 +117,7 @@ import { Storage } from '@ionic/storage';
        .post('https://tuongtac.fun/ionic/dangky.php', {
         Username: this.Username ,
         Password: this.Password ,
-        keyweb: 'dsfsdfsewstgrgtergte4e4t3t443t34'
+        chedo: 'signup' ,
   }, config)
   .then(response => (this.testFunction(response  )))
   .catch(error => console.log(error) )

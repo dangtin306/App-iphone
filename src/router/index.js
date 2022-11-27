@@ -9,6 +9,11 @@ const routes = [
     redirect: '/tabs/tab1'
   },
   {
+    path: '/tabs/authentication',
+    name: 'authentication',
+    component: () => import('@/views/authen.vue')
+  },
+  {
     path: '/tabs/sginup',
     name: 'sginup',
     component: () => import('@/views/sginup.vue')
@@ -29,6 +34,7 @@ const routes = [
         path: 'contact',
         component: () => import('@/views/contact.vue')
       },
+    
       {
         path: 'chedoxembio',
         component: () => import('@/views/chedoxembio.vue')

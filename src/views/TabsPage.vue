@@ -30,6 +30,7 @@ import {  AdMob  } from '@capacitor-community/admob';
  import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
   import { Browser } from '@capacitor/browser';
   import { Storage } from '@ionic/storage';
+  import axios from 'axios' ;
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
 import { settings, square, home ,link } from 'ionicons/icons';
 
@@ -53,21 +54,11 @@ export default {
       {
         this.localStorage.create();
 this.initialize();
-this.showInterstitial();
+
       },
   methods:
   {
-    async showInterstitial()  {
-  
-      var options = {
-    adId: 'YOUR ADID',
-    isTesting: true
-    // npa: true
-};
-
-  await AdMob.prepareInterstitial(options);
-  await AdMob.showInterstitial();
-},
+   
        async initialize() {
   const { status } = await AdMob.trackingAuthorizationStatus();
 
@@ -114,9 +105,51 @@ openapppro()
   
    
 },
+testFunction7(response)
+            {
+                this.info = response.data ,
+    this.message = this.info.message ,
+    this.status = this.info.status 
+    if ( this.status == 0 )
+    {  
+      this.openappleok = 'no' ;
+      this.apikeyokluon = '' ;
+    }
+    else if ( this.status == 1 )
+{
+  if ( this.message == 'mothoi' )
+    {  
+      this.openappleok = 'ok' ;
+      this.apikeyokluon = '?=apple?=' +  this.apikey + '?=keyapple' ;
+    }
+    else{
+      this.openappleok = 'no' ;
+      this.apikeyokluon = '' ;
+    }
+
+}
+            },
+            openapppro2()
+      {
+        const  headers = {
+    'content-type': 'application/json' 
+  } ;
+  let config = {
+  headers: headers
+};
+                axios
+       .post('https://tuongtac.fun/api/appleapp.php', {
+        apikey: this.apikey ,
+        chedo: 'apple' 
+  }, config)
+  .then(response => (this.testFunction7(response  )))
+  .catch(error => console.log(error) )
+      },
     gioithieu()
     {
-       const linkopenapp = 'https://tuongtac.fun/aboutus2.php?=apple?=' + this.apikey + '?=keyapple' ;
+      this.openapppro2() ;
+      setTimeout( () => {
+        const linkopenapp = 'https://tuongtac.fun/aboutus2.php' + this.apikeyokluon  ;
       const options = {
                   location: 'no',
                   usewkwebview: 'yes',
@@ -161,6 +194,15 @@ openapppro()
     else if( event.url.includes("tuongtac.fun") == true ){
       browser._loadAfterBeforeload(event.url);
     } 
+    else if( event.url.includes("payeer.com") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("perfectmoney") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("paypal.com") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
     else  if( event.url.includes("adclick.g.doubleclick.net") == true ){
       Browser.open({ url: mourlbrowser });
     } 
@@ -181,6 +223,7 @@ window.open(mourlbrowser ,"_blank" ) ;
     }
 }
       );
+      }, 700);
     }
   }
 };

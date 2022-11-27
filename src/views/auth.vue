@@ -2,6 +2,9 @@
     <ion-page>
       <ion-header>
         <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-back-button text="Quay Lại"></ion-back-button>
+        </ion-buttons>
           <ion-title>Login </ion-title>
         </ion-toolbar>
       </ion-header>
@@ -63,12 +66,12 @@
   import { Storage } from '@ionic/storage';
    import Swal from 'sweetalert2' ;
   import axios from 'axios'  ;
-  import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent  } from '@ionic/vue';
+  import { IonPage, IonHeader, IonToolbar, IonTitle,IonBackButton, IonContent  } from '@ionic/vue';
   // import ExploreContainer from '@/components/ExploreContainer.vue';
   
   export default {
     name: 'Tab2Page',
-    components: {  IonHeader, IonToolbar, IonTitle, IonContent, IonPage  } ,
+    components: {  IonHeader, IonToolbar, IonTitle, IonBackButton,IonContent, IonPage  } ,
     data (){ return {
         localStorage: new Storage(),
         Username : null,

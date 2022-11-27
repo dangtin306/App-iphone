@@ -219,7 +219,11 @@ export default {
       },
       mounted() {
       this.presentingElement = this.$refs.page.$el;
+ 
     },
+  
+   
+ 
     created(){
      
 
