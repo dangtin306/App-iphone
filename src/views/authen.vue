@@ -205,26 +205,17 @@
       browser._loadAfterBeforeload(event.url);
     } 
     if( event.url.includes("?apikey=") == true ){
-      function getSecondPart(str) {
-    return str.split('?apikey=')[1];
-} ;
-function getSecondPart2(str) {
-    return str.split('?username=')[1];
-} ;
-function getBeforePlus(str){
-
-return str.split("?username=")[0]; 
-
-}
+ 
 // use the function:
-browser.close();
-this.apikey = getSecondPart(event.url);
-this.apikey = getBeforePlus(this.apikey);
-this.username =   getSecondPart2(event.url);
+
+this.apikey = event.url.split('?apikey=')[1];
+this.apikey = this.apikey.split("?username=")[0]; 
+this.username =   event.url.split('?username=')[1];
 console.log ( this.apikey);
 console.log ( this.username);
 this.setLocalStorage( 'username' , this.username  ) ;
     this.setLocalStorage('apikey' , this.apikey  ) ;
+    browser.close();
     this.$router.push('/tabs/tab1') ;
     } 
     else if( event.url.includes("tecom.pro") == true ){
