@@ -161,6 +161,9 @@ export default {
          else
          {
           this.openapppro2() ;
+          setTimeout( () => {
+    this.openapppro() ;
+      }, 700);
          }
   });
       
@@ -270,13 +273,6 @@ await AdMob.showInterstitial();
       openapppro()
 {
   this.showInterstitial();
-  this.apikey = this.getLocalStorage('apikey') ;
-        Promise.all([this.apikey]).then((arrayOfResults) => {
-    this.apikey=arrayOfResults[0]; 
-    setTimeout( () => {
-    console.log( this.gioithieu() );
-      }, 300);
-  });
 
   
    

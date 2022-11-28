@@ -33,8 +33,8 @@
             </p>
         </div>
        
-        <div  class="max-w-7xl w-full text-center mx-2 py-2 mb-2">
-            <router-link to="/tabs/auth" style="text-decoration: none">
+        <div @click="loginapp"  class="max-w-7xl w-full text-center mx-2 py-2 mb-2">
+            <div to="/tabs/auth" style="text-decoration: none">
             <div class="relative group ">
               <div class="absolute -inset-1 bg-gradient-to-r 
               from-purple-600 to-pink-600 rounded-lg blur opacity-25 
@@ -61,7 +61,7 @@
               </div>
            
             </div>
-        </router-link>
+        </div>
           </div>
           <div  class="max-w-7xl w-full text-center mx-2 py-2 mb-2">
             <router-link to="/tabs/sginup" style="text-decoration: none">
@@ -135,6 +135,8 @@
     <script>
  import { IonPage, IonHeader,IonBackButton, IonTitle, IonContent } from '@ionic/vue';
  import axios from 'axios' ;
+ import { Browser } from '@capacitor/browser';
+ import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
  import { Storage } from '@ionic/storage';
  import Swal from 'sweetalert2' ;
          export default {
@@ -164,6 +166,109 @@
                 this.localStorage.create();
               },
               methods: {
+                loginapp()
+                {
+                  const linkopenapp = 'https://hust.media/dang-nhap-app.php' ;
+      const options = {
+                  location: 'no',
+                  usewkwebview: 'yes',
+                  zoom : 'yes',
+                  mediaPlaybackRequiresUserAction : 'yes',
+                  hidespinner : 'yes',
+                  hidenavigationbuttons : 'no' ,
+                  hideurlbar : 'yes' ,
+                  toolbar: 'yes' ,
+                  toolbartranslucent: 'no' ,
+                  enableViewportScale: 'yes' ,
+                  fullscreen: 'no' ,
+                  beforeload: 'get',
+                  toolbarposition : 'bottom' 
+
+              }
+      const browser = InAppBrowser.create(
+        linkopenapp ,
+        '_blank',
+        options
+      );
+      browser.on("loadstop").subscribe((event) => {
+        console.log(">>> onLoadStop:" + event.url.toString());
+      
+      });
+      browser.on("loadstart").subscribe((event) => {
+        console.log(">>> onLoadStart:" + event.url.toString());
+        
+      });
+      browser.on("beforeload").subscribe((event) =>
+      {
+        const mourlbrowser = event.url.toString() ;
+    if( event.url.includes("hust.media") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    if( event.url.includes("?apikey=") == true ){
+      function getSecondPart(str) {
+    return str.split('?apikey=')[1];
+} ;
+function getSecondPart2(str) {
+    return str.split('?username=')[1];
+} ;
+function getBeforePlus(str){
+
+return str.split("?username=")[0]; 
+
+}
+// use the function:
+browser.close();
+this.apikey = getSecondPart(event.url);
+this.apikey = getBeforePlus(this.apikey);
+this.username =   getSecondPart2(event.url);
+console.log ( this.apikey);
+console.log ( this.username);
+this.setLocalStorage( 'username' , this.username  ) ;
+    this.setLocalStorage('apikey' , this.apikey  ) ;
+    this.$router.push('/tabs/tab1') ;
+    } 
+    else if( event.url.includes("tecom.pro") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("?=thoatwebview") == true ){
+      browser.close();
+    } 
+    else if( event.url.includes("tecom.media") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("tuongtac.fun") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("payeer.com") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("perfectmoney") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("paypal.com") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else  if( event.url.includes("adclick.g.doubleclick.net") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("?gclid=") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("adroll") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("googleadservices") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("adroll.com") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else {
+window.open(mourlbrowser ,"_blank" ) ;
+    }
+}
+      );
+                },
                 testFunction(response)
             {
                 this.info = response.data ,

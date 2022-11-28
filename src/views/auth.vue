@@ -23,6 +23,7 @@
         to-indigo-400
       "
     >
+  
     <p class="mr-10 ml-10 text-center text-black text-3xl underline decoration-pink-500/30">Hust Media
 </p>
 <div class="mx-20">
@@ -54,9 +55,20 @@
               </router-link>
             </div>
         </div>
+        <VueSliderCaptcha
+        ref="sliderCaptcha"
+        v-model="status"
+        :src="src"
+        :sliderSrc="sliderSrc"
+        :y="y"
+        color="#1890ff"
+        @on-refresh="onRefresh"
+        @on-finish="onFinish"
+      ></VueSliderCaptcha>
         <p class="mr-7 ml-7 text-center text-black text-base underline decoration-pink-500/30">
             Bằng cách ấn đăng ký và đăng nhập, bạn đã đồng ý với điều khoản của chúng tôi 
         </p>
+     
     </body>
       </ion-content>
     </ion-page>
@@ -66,22 +78,25 @@
   import { Storage } from '@ionic/storage';
    import Swal from 'sweetalert2' ;
   import axios from 'axios'  ;
+  import VueSliderCaptcha from "vue-slider-captcha";
   import { IonPage, IonHeader, IonToolbar, IonTitle,IonBackButton, IonContent  } from '@ionic/vue';
   // import ExploreContainer from '@/components/ExploreContainer.vue';
   
   export default {
     name: 'Tab2Page',
-    components: {  IonHeader, IonToolbar, IonTitle, IonBackButton,IonContent, IonPage  } ,
+    components: { VueSliderCaptcha ,  IonHeader, IonToolbar, IonTitle, IonBackButton,IonContent, IonPage  } ,
     data (){ return {
         localStorage: new Storage(),
         Username : null,
         Password : null ,
+        status: null ,
                 info : '',
                 thanhcong : '' ,
             }
         },
         created(){
-            this.localStorage.create()
+            this.localStorage.create() ;
+            
         },
         methods : {
             testFunction(response)
@@ -104,7 +119,7 @@
 {
   this.setLocalStorage( 'username' , this.username  ) ;
     this.setLocalStorage('apikey' , this.apikey  ) ;
-    this.$router.push('/') ;
+    this.$router.push('/tabs/tab1') ;
 }
             },
             async setLocalStorage(index, value) {

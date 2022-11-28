@@ -353,7 +353,7 @@ this.chedoappleprofile = 1 ;
             {
                 this.removeLocalStorage('username');
                 this.removeLocalStorage('apikey');
-                this.$router.push('/tabs/auth') ;
+                this.$router.push('/tabs/authentication') ;
             },
             tatprofile()
         {
