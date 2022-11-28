@@ -76,7 +76,7 @@
 </button>
 </router-link> 
 <div v-if="openappleok == 'ok'">
-<div style="text-decoration: none" @click="openapppro" >
+<div style="text-decoration: none" @click="openapppro3" >
   <button type='button'
   class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>
   <div class='m-auto'>
@@ -143,7 +143,8 @@ export default {
     $route(to, from) {
       console.log(from) ;
       console.log(to) ;
-      if (to.path == '/tabs/tab1'){ 
+      if ( from.path == '/tabs/authentication' || from.path == '/tabs/sginup' )
+      { 
         setTimeout( () => {
         this.localStorage.create();
         this.apikey = this.getLocalStorage('apikey') ;
@@ -160,10 +161,38 @@ export default {
          }   
          else
          {
-          this.openapppro2() ;
           setTimeout( () => {
-    this.openapppro() ;
-      }, 700);
+            this.openapppro2() ;
+      }, 300);
+       
+         }
+  });
+      
+
+      }, 300);
+      }
+
+     else if (to.path == '/tabs/tab1'){ 
+        setTimeout( () => {
+        this.localStorage.create();
+        this.apikey = this.getLocalStorage('apikey') ;
+        Promise.all([this.apikey]).then((arrayOfResults) => {
+    this.apikey=arrayOfResults[0]; 
+    console.log(this.apikey);
+    if ( this.apikey == null )
+        {
+          this.$router.push('authentication') ;
+         }   
+       else if ( this.apikey == '' )
+        {
+          this.$router.push('authentication') ;
+         }   
+         else
+         {
+           setTimeout( () => {
+            this.openapppro2() ;
+      }, 300);
+       
          }
   });
       
@@ -211,6 +240,7 @@ export default {
   });
   setTimeout( () => {
     this.openapppro2() ;
+    this.openapppro() ;
       }, 700);
    
       },
@@ -275,6 +305,28 @@ await AdMob.showInterstitial();
   this.showInterstitial();
 
   
+  this.openapppro2() ;
+},
+openapppro3()
+{
+  this.localStorage.create();
+        this.username = this.getLocalStorage('username') ;
+        this.apikey = this.getLocalStorage('apikey') ;
+        Promise.all([this.apikey]).then((arrayOfResults) => {
+    this.apikey=arrayOfResults[0]; 
+    console.log(this.apikey);
+    if ( this.apikey == null )
+        {
+          this.$router.push('authentication') ;
+         }   
+       else if ( this.apikey == '' )
+        {
+          this.$router.push('authentication') ;
+         }   
+         else{
+          this.gioithieu() ;
+         }
+  });
    
 },
 gioithieu()

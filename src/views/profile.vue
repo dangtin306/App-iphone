@@ -44,9 +44,9 @@ text-align: -webkit-center;
         <br>
     </div>
     <div class="bg-green-300 shadow-lg pb-3 rounded-b-3xl">
-        <div
+        <div 
             class="flex  rounded-b-3xl bg-gray-100 dark:bg-gray-700 space-y-5 flex-col items-center py-7">
-          <span
+          <span @click="saochep(username)"
                     class="text-h1">{{ username }} </span>
         </div>
         <div
@@ -124,7 +124,20 @@ text-align: -webkit-center;
         </div>
         <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
          <h2 class="text-3xl text-break font-bold">
-          kết quả {{ thanhcong }}</h2></div></div></div>
+          kết quả {{ thanhcong }}</h2>
+          <div style="text-decoration: none" >
+            <button @click="saochep(thanhcong)" type='button'
+            class='flex break-inside bg-white text-black border border-dark rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>
+            <div class='m-auto'>
+              <div class='flex items-center justify-start flex-1 space-x-4'>
+                <span class='font-medium mb-[-2px]'>Sao chép ( Copy ) </span>
+                <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+                  <path d='M5 12h13M12 5l7 7-7 7' />
+              </svg>
+              </div>
+            </div>
+          </button>
+        </div></div></div></div>
     </div>
                       <button  @click="xacnhan"
                       class='flex break-inside bg-purple-400 hover:bg-purple-300 rounded-3xl px-8 py-2 mb-3 w-full dark:bg-slate-800 dark:text-white'>
@@ -292,7 +305,8 @@ import * as $ from 'jquery' ;
         { text: 'Thay mật khẩu', value: 'password' } , 
         { text: 'Lấy api key', value: 'apikey' } ,
         { text: 'Thay tên tài khoản', value: 'username' } ,
-        { text: 'Xóa tài khoản (delete account)', value: 'xoataikhoan' }
+        { text: 'Xóa tài khoản (delete account)', value: 'xoataikhoan' } ,
+        { text: 'Xem mật khẩu', value: 'laymatkhau' }
       ],
                 lienketoutput: null ,
                 thanhcong2: null ,
@@ -336,12 +350,14 @@ import * as $ from 'jquery' ;
         methods : {
           onChange() {
 
-    if ( this.chedoprofile == 'xoataikhoan' || this.chedoprofile == 'apikey' )
+    if ( this.chedoprofile == 'xoataikhoan' || this.chedoprofile == 'apikey' || this.chedoprofile == 'laymatkhau' )
     {
 this.chedoappleprofile = 1 ;
+this.thanhcong = null ;
     }
     else{
       this.chedoappleprofile = 0 ;
+      this.thanhcong = null ;
     }
     },
           click3()
@@ -369,11 +385,11 @@ this.chedoappleprofile = 1 ;
 this.optionprofile = optionprofile ;
 
             } ,
-            saocheplienket()
+          
+      saochep(urlsplit)
             {
                 
-                this.clipboard.copy(this.lienketoutput);
-                navigator.clipboard.writeText(this.lienketoutput);
+              navigator.clipboard.writeText(urlsplit);
                 Swal.fire({
   title: 'Sao chép thành công' ,
   heightAuto : false,

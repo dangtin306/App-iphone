@@ -204,7 +204,7 @@
     if( event.url.includes("hust.media") == true ){
       browser._loadAfterBeforeload(event.url);
     } 
-    if( event.url.includes("?apikey=") == true ){
+   else if( event.url.includes("?apikey=") == true ){
  
 // use the function:
 
