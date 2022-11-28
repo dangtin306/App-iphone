@@ -228,9 +228,11 @@ export default {
          else
          {
           setTimeout( () => {
-    this.openapppro2() ;
     this.openapppro() ;
-      }, 700);
+    setTimeout( () => {
+    this.openapppro2() ;
+      }, 300);
+      }, 300);
    
          }   
   });
@@ -317,7 +319,6 @@ await AdMob.showInterstitial();
   this.showInterstitial();
 
   
-  this.openapppro2() ;
 },
 openapppro3()
 {

@@ -138,75 +138,7 @@
         name: '',
         capital: ''
         }} ,
-        watch: {
-          
-      $route(to, from) {
-        console.log(from) ;
-        console.log(to) ;
-        if (  from.path == '/tabs/sginup' )
-        { 
-          setTimeout( () => {
-          this.localStorage.create();
-          this.apikey = this.getLocalStorage('apikey') ;
-          Promise.all([this.apikey]).then((arrayOfResults) => {
-      this.apikey=arrayOfResults[0]; 
-      console.log(this.apikey);
-      if ( this.apikey == null )
-          {
-            this.$router.push('authentication') ;
-           }   
-         else if ( this.apikey == '' )
-          {
-            this.$router.push('authentication') ;
-           }   
-           else
-           {
-            setTimeout( () => {
-              this.openapppro2() ;
-        }, 300);
-         
-           }
-    });
-        
-  
-        }, 300);
-        }
-  
-       else if (to.path == '/tabs/tab1'){ 
-          setTimeout( () => {
-          this.localStorage.create();
-          this.apikey = this.getLocalStorage('apikey') ;
-          Promise.all([this.apikey]).then((arrayOfResults) => {
-      this.apikey=arrayOfResults[0]; 
-      console.log(this.apikey);
-      if ( this.apikey == null )
-          {
-            this.$router.push('authentication') ;
-           }   
-         else if ( this.apikey == '' )
-          {
-            this.$router.push('authentication') ;
-           }   
-           else
-           {
-             setTimeout( () => {
-              this.openapppro2() ;
-        }, 300);
-         
-           }
-    });
-        
-  
-        }, 300);
-      
-  }
-  //       router.beforeEach((to, from, next) => {
-  //     console.log(`Navigating to: ${to.name}`);
-  //     next();
-  // });
-        
-      },
-    },
+       
     
         created(){
           // alert(this.foo) ;
@@ -306,7 +238,7 @@
   {
   
     
-    this.openapppro2() ;
+/////
   },
   openapppro3()
   {
