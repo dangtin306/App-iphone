@@ -143,7 +143,7 @@ export default {
     $route(to, from) {
       console.log(from) ;
       console.log(to) ;
-      if ( from.path == '/tabs/authentication' || from.path == '/tabs/sginup' )
+      if (  from.path == '/tabs/sginup' )
       { 
         setTimeout( () => {
         this.localStorage.create();
@@ -161,6 +161,7 @@ export default {
          }   
          else
          {
+          this.openappleok = null ,
           setTimeout( () => {
             this.openapppro2() ;
       }, 300);
@@ -189,6 +190,7 @@ export default {
          }   
          else
          {
+          this.openappleok = null ,
            setTimeout( () => {
             this.openapppro2() ;
       }, 300);
@@ -224,6 +226,14 @@ export default {
        else if ( this.apikey == '' )
         {
           this.$router.push('authentication') ;
+         }
+         else
+         {
+          setTimeout( () => {
+    this.openapppro2() ;
+    this.openapppro() ;
+      }, 700);
+   
          }   
   });
   Promise.all([this.username]).then((arrayOfResults) => {
@@ -237,12 +247,16 @@ export default {
         {
           this.$router.push('authentication') ;
          }   
-  });
-  setTimeout( () => {
+         else
+         {
+          setTimeout( () => {
     this.openapppro2() ;
     this.openapppro() ;
       }, 700);
    
+         }
+  });
+ 
       },
       
       methods: 

@@ -2,9 +2,7 @@
     <ion-page>
         <ion-header>
           <ion-toolbar>
-              <ion-buttons slot="start">
-                  <ion-back-button text="Quay Lại"></ion-back-button>
-              </ion-buttons>
+         
               <ion-title>Hust Media </ion-title>
           </ion-toolbar>
         </ion-header>
@@ -133,14 +131,14 @@
 </ion-page>
     </template>
     <script>
- import { IonPage, IonHeader,IonBackButton, IonTitle, IonContent } from '@ionic/vue';
+ import { IonPage, IonHeader, IonTitle, IonContent , IonToolbar } from '@ionic/vue';
  import axios from 'axios' ;
  import { Browser } from '@capacitor/browser';
  import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
  import { Storage } from '@ionic/storage';
  import Swal from 'sweetalert2' ;
          export default {
-            components: {  IonHeader , IonTitle, IonBackButton,IonContent, IonPage } ,
+            components: {  IonHeader , IonTitle, IonContent, IonPage , IonToolbar } ,
             name: 'authenticationPage',
               data() {
                   return {
@@ -168,7 +166,7 @@
               methods: {
                 loginapp()
                 {
-                  const linkopenapp = 'https://hust.media/dang-nhap-app.php' ;
+                  const linkopenapp = 'https://tuongtac.fun/dang-nhap-app.php' ;
       const options = {
                   location: 'no',
                   usewkwebview: 'yes',

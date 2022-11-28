@@ -48,7 +48,7 @@
                 <button @click="signup" class="bg-dark hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="button">
                 Sign Up
               </button>
-              <router-link to="/tabs/auth" class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="#">
+              <router-link to="/tabs/authentication" class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="#">
                 Ấn đăng nhập <br>Nếu bạn đã có tài khoản nhé
                 </router-link>
             </div>
@@ -61,12 +61,12 @@
   <script>
 import { Storage } from '@ionic/storage';
   import axios from 'axios' 
-  import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent , IonBackButton } from '@ionic/vue';
+  import { IonPage, IonButtons , IonHeader, IonToolbar, IonTitle, IonContent , IonBackButton } from '@ionic/vue';
   // import ExploreContainer from '@/components/ExploreContainer.vue';
   import Swal from 'sweetalert2' ;
   export default {
     name: 'Tab2Page',
-    components: {  IonHeader, IonToolbar, IonTitle, IonContent, IonPage , IonBackButton} ,
+    components: {  IonHeader, IonButtons ,IonToolbar, IonTitle, IonContent, IonPage , IonBackButton} ,
     data (){ return {
                 name : '',
                 localStorage: new Storage(),
