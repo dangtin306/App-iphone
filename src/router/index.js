@@ -56,6 +56,10 @@ const routes = [
         component: () => import('@/views/Tab2Page.vue')
       },
       {
+        path: 'tab11',
+        component: () => import('@/views/Tab11Page.vue')
+      },
+      {
         path: 'profile',
         component: () => import('@/views/profile.vue')
       },

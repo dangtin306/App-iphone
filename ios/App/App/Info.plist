@@ -14,7 +14,7 @@
   </dict>
 </array>
 <key>NSUserTrackingUsageDescription</key>
-<string>Yêu cầu để hiển thị quảng cáo được tốt hơn(Request for better ad display)</string>
+<string>Yêu cầu để trải nghiệm quảng cáo được tốt hơn(Request for better ads display)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

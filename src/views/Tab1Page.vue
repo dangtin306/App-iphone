@@ -161,7 +161,6 @@ export default {
          }   
          else
          {
-          this.openappleok = null ,
           setTimeout( () => {
             this.openapppro2() ;
       }, 300);
@@ -190,7 +189,6 @@ export default {
          }   
          else
          {
-          this.openappleok = null ,
            setTimeout( () => {
             this.openapppro2() ;
       }, 300);

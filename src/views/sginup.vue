@@ -102,7 +102,7 @@ import { Storage } from '@ionic/storage';
 {
   this.setLocalStorage( 'username' , this.username  ) ;
     this.setLocalStorage('apikey' , this.apikey  ) ;
-    this.$router.push('/') ;
+    this.$router.push('/tabs/tab11') ;
 }
             },
           signup()

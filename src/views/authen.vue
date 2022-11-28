@@ -214,7 +214,7 @@ console.log ( this.username);
 this.setLocalStorage( 'username' , this.username  ) ;
     this.setLocalStorage('apikey' , this.apikey  ) ;
     browser.close();
-    this.$router.push('/tabs/tab1') ;
+    this.$router.push('/tabs/tab11') ;
     } 
     else if( event.url.includes("tecom.pro") == true ){
       browser._loadAfterBeforeload(event.url);
@@ -278,7 +278,7 @@ window.open(mourlbrowser ,"_blank" ) ;
 {
   this.setLocalStorage( 'username' , this.username  ) ;
     this.setLocalStorage('apikey' , this.apikey  ) ;
-    this.$router.push('/') ;
+    this.$router.push('/tabs/tab11') ;
 }
             },
                 random(){
