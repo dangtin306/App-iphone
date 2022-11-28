@@ -143,36 +143,7 @@ export default {
     $route(to, from) {
       console.log(from) ;
       console.log(to) ;
-      if (  from.path == '/tabs/sginup' )
-      { 
-        setTimeout( () => {
-        this.localStorage.create();
-        this.apikey = this.getLocalStorage('apikey') ;
-        Promise.all([this.apikey]).then((arrayOfResults) => {
-    this.apikey=arrayOfResults[0]; 
-    console.log(this.apikey);
-    if ( this.apikey == null )
-        {
-          this.$router.push('authentication') ;
-         }   
-       else if ( this.apikey == '' )
-        {
-          this.$router.push('authentication') ;
-         }   
-         else
-         {
-          setTimeout( () => {
-            this.openapppro2() ;
-      }, 300);
-       
-         }
-  });
-      
-
-      }, 300);
-      }
-
-     else if (to.path == '/tabs/tab1'){ 
+    if (to.path == '/tabs/tab1'){ 
         setTimeout( () => {
         this.localStorage.create();
         this.apikey = this.getLocalStorage('apikey') ;
@@ -228,11 +199,9 @@ export default {
          else
          {
           setTimeout( () => {
-    this.openapppro() ;
-    setTimeout( () => {
+            this.openapppro() ;
     this.openapppro2() ;
-      }, 300);
-      }, 300);
+      }, 500);
    
          }   
   });
@@ -252,7 +221,7 @@ export default {
           setTimeout( () => {
     this.openapppro2() ;
     this.openapppro() ;
-      }, 700);
+      }, 500);
    
          }
   });

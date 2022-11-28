@@ -161,8 +161,7 @@
            {
             setTimeout( () => {
       this.openapppro2() ;
-      this.openapppro() ;
-        }, 700);
+        }, 500);
      
            }   
     });
@@ -181,8 +180,8 @@
            {
             setTimeout( () => {
       this.openapppro2() ;
-      this.openapppro() ;
-        }, 700);
+
+        }, 500);
      
            }
     });
@@ -234,12 +233,7 @@
   }
               },
      
-        openapppro()
-  {
-  
     
-/////
-  },
   openapppro3()
   {
     this.localStorage.create();
