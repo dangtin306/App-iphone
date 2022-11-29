@@ -117,8 +117,7 @@
 
    import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
     import { Browser } from '@capacitor/browser';
-  import { doc, setDoc } from "firebase/firestore"
-  import db from '../firebase/init.js'
+
   import { Storage } from '@ionic/storage';
   
   import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
@@ -142,7 +141,7 @@
     
         created(){
           // alert(this.foo) ;
-          this.addCountryCapital();
+   
           this.localStorage.create();
           this.username = this.getLocalStorage('username') ;
           this.apikey = this.getLocalStorage('apikey') ;
@@ -336,14 +335,7 @@
         );
        
       },
-        async addCountryCapital() {
-  
-  await setDoc(doc(db, 'countries', 'ss'), {
-    // new data
-    capital: 'Londossn'
-    // merge
-  }, { merge: true })
-  },
+    
         async setLocalStorage(index, value) {
         await this.localStorage.set(index, value);
       },
