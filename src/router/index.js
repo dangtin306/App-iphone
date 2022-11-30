@@ -45,6 +45,7 @@ const routes = [
       },
       {
         path: 'tab1',
+        name: 'tab1',
         component: () => import('@/views/Tab1Page.vue')
       },
       {
@@ -57,6 +58,7 @@ const routes = [
       },
       {
         path: 'tab11',
+        name: 'tab11',
         component: () => import('@/views/Tab11Page.vue')
       },
       {

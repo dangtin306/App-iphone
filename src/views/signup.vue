@@ -43,12 +43,16 @@
             <input v-model="Password"  class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" id="password" type="password" placeholder="******************">
             <p class="text-red text-xs italic">Please choose a password.</p>
           </div>
+          <ion-button expand="block" @click="signup"  >
+            <div v-if="nutxuly == '1'" class="spinner-border" role="status">
+                       
+            </div> {{ nutorder }}
+          </ion-button>
             <div class="flex items-center justify-between">
              
-                <button @click="signup" class="bg-dark hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="button">
-                Sign Up
-              </button>
-              <router-link to="/tabs/authentication" class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="#">
+               
+              <br>
+                            <router-link to="/tabs/authentication" class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="#">
                 Ấn đăng nhập <br>Nếu bạn đã có tài khoản nhé
                 </router-link>
             </div>
@@ -61,16 +65,18 @@
   <script>
 import { Storage } from '@ionic/storage';
   import axios from 'axios' 
-  import { IonPage, IonButtons , IonHeader, IonToolbar, IonTitle, IonContent , IonBackButton } from '@ionic/vue';
+  import { IonPage, IonButtons , IonButton  , IonHeader, IonToolbar, IonTitle, IonContent , IonBackButton } from '@ionic/vue';
   // import ExploreContainer from '@/components/ExploreContainer.vue';
   import Swal from 'sweetalert2' ;
   export default {
     name: 'Tab2Page',
-    components: {  IonHeader, IonButtons ,IonToolbar, IonTitle, IonContent, IonPage , IonBackButton} ,
+    components: {  IonHeader, IonButtons ,IonButton  ,IonToolbar, IonTitle, IonContent, IonPage , IonBackButton} ,
     data (){ return {
                 name : '',
                 localStorage: new Storage(),
                 age : '',
+                nutorder: 'Sign Up ( đăng ký )' ,
+                nutxuly: 0 ,
                 Username : null,
         Password : null ,
                 info : '',
@@ -82,6 +88,20 @@ import { Storage } from '@ionic/storage';
           this.localStorage.create();
         },
         methods : {
+          error(error)
+          {
+            console.log(error.name) ;
+            if (error.name) 
+            {
+              Swal.fire({
+  title: 'Please try again with a different username' ,
+  heightAuto : false,
+ 
+})
+this.nutorder = 'Sign Up ( đăng ký )' ;
+              this.nutxuly = 0 ;
+            }
+          },
           testFunction(response)
             {
                 this.info = response.data ,
@@ -113,13 +133,18 @@ else
 })
 
     }
+    this.nutorder = 'Sign Up ( đăng ký )' ;
+              this.nutxuly = 0 ;
             },
           signup()
             {
+              this.nutorder = 'chờ xíu nhé' ;
+              this.nutxuly = 1 ;
                 const  headers = {
     'content-type': 'application/json' 
   } ;
   let config = {
+    timeout: 5000,
   headers: headers
 };
                 axios
@@ -129,7 +154,7 @@ else
         chedo: 'signup' ,
   }, config)
   .then(response => (this.testFunction(response  )))
-  .catch(error => console.log(error) )
+  .catch(error => ( this.error(error  ))   )
 
 },
 async setLocalStorage(index, value) {
