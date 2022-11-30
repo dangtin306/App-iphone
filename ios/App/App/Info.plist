@@ -13,8 +13,6 @@
     <string>cstr6suwn9.skadnetwork</string>
   </dict>
 </array>
-<key>NSUserTrackingUsageDescription</key>
-<string>Yêu cầu để trải nghiệm quảng cáo được tốt hơn(Request for better ads display)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

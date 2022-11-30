@@ -7,7 +7,7 @@
       </ion-header>
       <ion-content :fullscreen="true">
         
-        <body
+        <div
         class="
           antialiased
           bg-gradient-to-r
@@ -107,7 +107,7 @@
                 </div>
               </button>
             </router-link> 
-           </body>
+           </div>
       </ion-content>
       
     </ion-page>

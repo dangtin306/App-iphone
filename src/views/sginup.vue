@@ -104,6 +104,15 @@ import { Storage } from '@ionic/storage';
     this.setLocalStorage('apikey' , this.apikey  ) ;
     this.$router.push('/tabs/tab11') ;
 }
+else
+    {  
+      Swal.fire({
+  title: 'Please try again with a different username' ,
+  heightAuto : false,
+ 
+})
+
+    }
             },
           signup()
             {

@@ -60,18 +60,18 @@ this.initialize();
   {
    
        async initialize() {
-  const { status } = await AdMob.trackingAuthorizationStatus();
+  // const { status } = await AdMob.trackingAuthorizationStatus();
 
-  if (status === 'notDetermined') {
-    console.log('Display info before ads load first time')
-  }
+  // if (status === 'notDetermined') {
+  //   console.log('Display info before ads load first time')
+  // }
  
   AdMob.initialize({
     requestTrackingAuthorization: true,
     testingDevices: ['YOURTESTDEVICECODE'],
     initializeForTesting: true,
   });
-  console.log(['YOURTESTDEVICECODE']);
+  // console.log(['YOURTESTDEVICECODE']);
     },
      beforeloadCallBack(params, callback) {
   console.log(">>> beforeload: " + params.url.toString());
