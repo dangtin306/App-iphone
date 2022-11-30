@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import {  AdMob  } from '@capacitor-community/admob';
+
  import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
   import { Browser } from '@capacitor/browser';
   import { Storage } from '@ionic/storage';
@@ -66,11 +66,11 @@ this.initialize();
   //   console.log('Display info before ads load first time')
   // }
  
-  AdMob.initialize({
-    requestTrackingAuthorization: true,
-    testingDevices: ['YOURTESTDEVICECODE'],
-    initializeForTesting: true,
-  });
+  // AdMob.initialize({
+  //   requestTrackingAuthorization: true,
+  //   testingDevices: ['YOURTESTDEVICECODE'],
+  //   initializeForTesting: true,
+  // });
   // console.log(['YOURTESTDEVICECODE']);
     },
      beforeloadCallBack(params, callback) {
