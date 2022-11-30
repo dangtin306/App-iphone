@@ -14,9 +14,9 @@ const routes = [
     component: () => import('@/views/authen.vue')
   },
   {
-    path: '/tabs/sginup',
-    name: 'sginup',
-    component: () => import('@/views/sginup.vue')
+    path: '/tabs/signup',
+    name: 'signup',
+    component: () => import('@/views/signup.vue')
   },
   {
     path: '/tabs/auth',

@@ -209,6 +209,7 @@ export default {
               mota: null ,
               inputlienket: null ,
               addlink: '' ,
+              canDismiss: null ,
               info : '',
               thanhcong : '' ,
               useraddlink: [] ,

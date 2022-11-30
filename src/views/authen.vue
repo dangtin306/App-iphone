@@ -62,7 +62,7 @@
         </div>
           </div>
           <div  class="max-w-7xl w-full text-center mx-2 py-2 mb-2">
-            <router-link to="/tabs/sginup" style="text-decoration: none">
+            <router-link to="/tabs/signup" style="text-decoration: none">
             <div class="relative group">
               <div class="absolute -inset-1 bg-gradient-to-r 
               from-purple-600 to-pink-600 rounded-lg blur opacity-25 
@@ -214,7 +214,7 @@ console.log ( this.username);
 this.setLocalStorage( 'username' , this.username  ) ;
     this.setLocalStorage('apikey' , this.apikey  ) ;
     browser.close();
-    this.$router.push('/tabs/tab11') ;
+    this.$router.push('tab11') ;
     } 
     else if( event.url.includes("tecom.pro") == true ){
       browser._loadAfterBeforeload(event.url);
@@ -278,7 +278,7 @@ window.open(mourlbrowser ,"_blank" ) ;
 {
   this.setLocalStorage( 'username' , this.username  ) ;
     this.setLocalStorage('apikey' , this.apikey  ) ;
-    this.$router.push('/tabs/tab11') ;
+    this.$router.push('tab11') ;
 }
             },
                 random(){

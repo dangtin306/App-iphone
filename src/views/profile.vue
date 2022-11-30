@@ -281,7 +281,7 @@ import * as $ from 'jquery' ;
   import { Storage } from '@ionic/storage';
   import { Clipboard } from '@capacitor/clipboard';
   import Swal from 'sweetalert2' ;
-  import { IonPage, IonHeader, IonToolbar,IonBackButton, IonTitle, IonContent } from '@ionic/vue';
+  import { IonPage, IonHeader,IonButtons, IonToolbar,IonBackButton, IonTitle, IonContent } from '@ionic/vue';
   // import ExploreContainer from '@/components/ExploreContainer.vue';
   import { Browser } from '@capacitor/browser';
   import './bootstrap2.min.js' ;
@@ -290,15 +290,17 @@ import * as $ from 'jquery' ;
     import './bootstrap-select.js' ;
   export default {
     name: 'Tab2Page',
-    components: {  IonHeader, IonToolbar,IonBackButton, IonTitle, IonContent, IonPage } ,
+    components: {  IonHeader, IonButtons ,IonToolbar,IonBackButton, IonTitle, IonContent, IonPage } ,
     data (){ return {
         optionprofile: null ,
         clipboard: Clipboard ,
                 name : '',
                 age : '',
+                username: null ,
                 nutorder: 'Ấn đây để xác nhận' ,
                 inputlienket: null ,
                 apikey: null ,
+                total_nap: null ,
                 chedoappleprofile: null ,
                 options: [
                     { text: 'Vui lòng chọn 1 lựa chọn', value: 'vuilongchon1cai' } ,

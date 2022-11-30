@@ -107,6 +107,7 @@
                 </div>
               </button>
             </router-link> 
+            <br>
            </div>
       </ion-content>
       
