@@ -192,6 +192,7 @@ export default {
               age : '',
               countries: [],
               lienket: null ,
+              inputmota: null ,
               usersocial: null ,
               inputaddlink: null ,
               options: [
@@ -209,7 +210,6 @@ export default {
               mota: null ,
               inputlienket: null ,
               addlink: '' ,
-              canDismiss: null ,
               info : '',
               thanhcong : '' ,
               useraddlink: [] ,
