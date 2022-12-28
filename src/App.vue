@@ -75,7 +75,9 @@
     .colored-toast .swal2-title {
       color: white;
     }
-    
+    .colored-toast {
+      top: 27px;
+    }
     .colored-toast .swal2-close {
       color: white;
     }

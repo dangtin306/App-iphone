@@ -261,6 +261,14 @@ window.open(mourlbrowser ,"_blank" ) ;
                 },
                 testFunction(response)
             {
+              this.dangkynhanhok = ` <p class="text-lg text-slate-1000">
+                    <!-- <img src="https://inkythuatso.com/uploads/images/2021/11/mb-bank-logo-inkythuatso-01-10-09-01-10.jpg"    class="h-7 w-7 cananh"> -->
+                  
+                    Đăng ký nhanh 
+                 bằng một lần nhấp ( Pro )
+                  </p>
+                  <div class="block text-indigo-400 group-hover:text-slate-800 transition duration-200" target="_blank">
+                Fast Sign Up Pro ->   </div>`,
                 this.info = response.data ,
     this.apikey = this.info.apikey ,
     this.username = this.info.username ,

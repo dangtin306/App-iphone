@@ -322,13 +322,14 @@ import * as $ from 'jquery' ;
                 thanhcong : '' ,
             }
         },
-    
-        created(){
-         
-           
+        watch: {
+        $route(to, from) {
+          console.log(from) ;
+      console.log(to) ;
+          if (to.path == '/tabs/profile') 
+{
+  
 
-
-            this.localStorage.create();
         this.apikey = this.getLocalStorage('apikey') ;
         Promise.all([this.apikey]).then((arrayOfResults) => {
     this.apikey=arrayOfResults[0]; 
@@ -347,6 +348,14 @@ import * as $ from 'jquery' ;
   });
 
             
+}}
+        },
+        created(){
+         
+           
+          this.localStorage.create();
+
+           
 
         },
         methods : {

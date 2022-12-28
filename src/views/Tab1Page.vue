@@ -180,6 +180,7 @@ export default {
       }, 300);
     
 }
+
 //       router.beforeEach((to, from, next) => {
 //     console.log(`Navigating to: ${to.name}`);
 //     next();
@@ -211,8 +212,8 @@ export default {
          }
          else
          {
+          this.openapppro() ;
           setTimeout( () => {
-            this.openapppro() ;
     this.openapppro2() ;
       }, 300);
    
@@ -272,7 +273,7 @@ export default {
   showConfirmButton: false,
   timer: 10000,
   timerProgressBar: true,
-  onOpen: (toast) => {
+  didOpen: (toast) => {
     toast.addEventListener('mouseenter', Swal.stopTimer)
     toast.addEventListener('mouseleave', Swal.resumeTimer)
   }
@@ -346,13 +347,13 @@ camonsadsaddsa()
   showConfirmButton: false,
   timer: 3000,
   timerProgressBar: true,
-  onOpen: (toast) => {
+  didOpen: (toast) => {
     toast.addEventListener('mouseenter', Swal.stopTimer)
     toast.addEventListener('mouseleave', Swal.resumeTimer)
   }
 }).fire({
     icon: 'success',
-    title: 'Cảm ơn bạn đã trở lại ( Thankiu comeback)'
+    title: 'Cảm ơn bạn đã trở lại (Thankiu comeback)'
 
 })
   }
@@ -394,7 +395,9 @@ gioithieu()
                   hidenavigationbuttons : 'no' ,
                   hideurlbar : 'yes' ,
                   toolbar: 'yes' ,
-                  toolbartranslucent: 'no' ,
+                  toolbarcolor: '#FFC0CB' ,
+                  toolbartranslucent: 'yes' ,
+                  lefttoright: 'yes',
                   enableViewportScale: 'yes' ,
                   fullscreen: 'no' ,
                   beforeload: 'get',
@@ -444,9 +447,10 @@ gioithieu()
     else  if( event.url.includes("?gclid=") == true ){
       Browser.open({ url: mourlbrowser });
     } 
-    else  if( event.url.includes("adroll") == true ){
+    else  if( event.url.includes("criteo.com") == true ){
       Browser.open({ url: mourlbrowser });
     } 
+    
     else  if( event.url.includes("googleadservices") == true ){
       Browser.open({ url: mourlbrowser });
     } 

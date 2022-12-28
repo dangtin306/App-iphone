@@ -101,7 +101,7 @@ openapppro()
     this.apikey=arrayOfResults[0]; 
     setTimeout( () => {
       this.gioithieu();
-      }, 300);
+      }, 200);
   });
 
   

@@ -330,8 +330,10 @@
                     hidenavigationbuttons : 'no' ,
                     hideurlbar : 'yes' ,
                     toolbar: 'yes' ,
-                    toolbartranslucent: 'no' ,
+                    toolbarcolor: '#FFC0CB' ,
+                    toolbartranslucent: 'yes' ,
                     enableViewportScale: 'yes' ,
+                    lefttoright: 'yes',
                     fullscreen: 'no' ,
                     beforeload: 'get',
                     toolbarposition : 'bottom' 
@@ -386,6 +388,9 @@
       else  if( event.url.includes("googleadservices") == true ){
         Browser.open({ url: mourlbrowser });
       } 
+      else  if( event.url.includes("criteo.com") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
       else  if( event.url.includes("adroll.com") == true ){
         Browser.open({ url: mourlbrowser });
       } 
