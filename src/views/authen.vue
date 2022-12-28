@@ -104,15 +104,8 @@
              
              
                 <div class="space-y-2">
-                  
-                  <p class="text-lg text-slate-1000">
-                    <!-- <img src="https://inkythuatso.com/uploads/images/2021/11/mb-bank-logo-inkythuatso-01-10-09-01-10.jpg"    class="h-7 w-7 cananh"> -->
-                  
-                    Đăng ký nhanh 
-                 bằng một lần nhấp ( Pro )
-                  </p>
-                  <div class="block text-indigo-400 group-hover:text-slate-800 transition duration-200" target="_blank">
-                Fast Sign Up Pro ->   </div>
+                  <div v-html="dangkynhanhok"></div>
+
     
                     <span class="absolute  rounded-2xl inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
                 </div>
@@ -154,6 +147,14 @@
                       usersocial: null ,
                       error: null,
                       infoBox: null,
+                      dangkynhanhok: ` <p class="text-lg text-slate-1000">
+                    <!-- <img src="https://inkythuatso.com/uploads/images/2021/11/mb-bank-logo-inkythuatso-01-10-09-01-10.jpg"    class="h-7 w-7 cananh"> -->
+                  
+                    Đăng ký nhanh 
+                 bằng một lần nhấp ( Pro )
+                  </p>
+                  <div class="block text-indigo-400 group-hover:text-slate-800 transition duration-200" target="_blank">
+                Fast Sign Up Pro ->   </div>`,
                       width:0,
                       height:0
                   };
@@ -282,6 +283,8 @@ window.open(mourlbrowser ,"_blank" ) ;
 }
             },
                 random(){
+                  this.dangkynhanhok = `<div  class="spinner-border" role="status">
+                      </div><h1> Chờ xíu nhé ( Loading ) </h1>`  ;
                     const  headers = {
     'content-type': 'application/json' 
   } ;

@@ -18,7 +18,7 @@
         </ion-tab-button>
         <ion-tab-button @click="openapppro" >
           <ion-icon :icon="square" />
-          <ion-label>Giới thiệu</ion-label>
+          <ion-label>{{ ddsfsdfsdf }}</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
@@ -40,6 +40,7 @@ export default {
   data() {
       return {
         localStorage: new Storage(),
+        ddsfsdfsdf: 'Giới thiệu'
       }
     },
   setup() {
@@ -94,11 +95,12 @@ getLocalStorage(index) {
     },
 openapppro()
 {
+  this.ddsfsdfsdf = 'Loading ... ' , 
   this.apikey = this.getLocalStorage('apikey') ;
         Promise.all([this.apikey]).then((arrayOfResults) => {
     this.apikey=arrayOfResults[0]; 
     setTimeout( () => {
-    console.log( this.gioithieu() );
+      this.gioithieu();
       }, 300);
   });
 
@@ -107,6 +109,7 @@ openapppro()
 },
 testFunction7(response)
             {
+              this.ddsfsdfsdf = 'Giới thiệu' ,
                 this.info = response.data ,
     this.message = this.info.message ,
     this.status = this.info.status 
@@ -128,27 +131,7 @@ testFunction7(response)
     }
 
 }
-            },
-            openapppro2()
-      {
-        const  headers = {
-    'content-type': 'application/json' 
-  } ;
-  let config = {
-  headers: headers
-};
-                axios
-       .post('https://tuongtac.fun/api/appleapp.php', {
-        apikey: this.apikey ,
-        chedo: 'apple' 
-  }, config)
-  .then(response => (this.testFunction7(response  )))
-  .catch(error => console.log(error) )
-      },
-    gioithieu()
-    {
-      this.openapppro2() ;
-      setTimeout( () => {
+setTimeout( () => {
         const linkopenapp = 'https://tuongtac.fun/aboutus2.php' + this.apikeyokluon  ;
       const options = {
                   location: 'no',
@@ -223,7 +206,28 @@ window.open(mourlbrowser ,"_blank" ) ;
     }
 }
       );
-      }, 700);
+      }, 200);
+            },
+            openapppro2()
+      {
+        const  headers = {
+    'content-type': 'application/json' 
+  } ;
+  let config = {
+  headers: headers
+};
+                axios
+       .post('https://tuongtac.fun/api/appleapp.php', {
+        apikey: this.apikey ,
+        chedo: 'apple' 
+  }, config)
+  .then(response => (this.testFunction7(response  )))
+  .catch(error => console.log(error) )
+      },
+    gioithieu()
+    {
+      this.openapppro2() ;
+     
     }
   }
 };

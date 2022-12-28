@@ -1,3 +1,4 @@
+
 <template>
   <ion-page>
     <ion-header>
@@ -75,8 +76,11 @@
   </div>
 </button>
 </router-link> 
-<div v-if="openappleok == 'ok'">
-<div style="text-decoration: none" @click="openapppro3" >
+<div >
+  <div class='text-center' v-if="openappleok != 'ok' && openappleok != 'no'"   >
+  <div v-html="checktrangthai"></div>
+</div>
+<div v-if="openappleok == 'ok'" style="text-decoration: none" @click="openapppro3" >
   <button type='button'
   class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>
   <div class='m-auto'>
@@ -115,6 +119,7 @@
 
 <script>
 import {  AdMob  } from '@capacitor-community/admob';
+import Swal from 'sweetalert2' ;
  import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
   import { Browser } from '@capacitor/browser';
 import { doc, setDoc } from "firebase/firestore"
@@ -131,8 +136,11 @@ export default {
         localStorage: new Storage(),
         picked: '' ,
         apikey: null ,
+        checktrangthai: `<h5> <div  class="spinner-border" role="status">
+  </div><h1> Chờ xíu nhé ( Loading ) </h1> </h5>` ,
         openappleok: null ,
         apikeyokluon: '' ,
+        ahsdbasjdjlkasdads: '' ,
         traloiso: null ,
         aka: '',
       name: '',
@@ -144,6 +152,7 @@ export default {
       console.log(from) ;
       console.log(to) ;
     if (to.path == '/tabs/tab1'){ 
+      this.ahsdbasjdjlkasdads = '1' ;
         setTimeout( () => {
         this.localStorage.create();
         this.apikey = this.getLocalStorage('apikey') ;
@@ -180,6 +189,10 @@ export default {
   },
   
       created(){
+      
+
+
+
         // alert(this.foo) ;
         this.addCountryCapital();
         this.localStorage.create();
@@ -201,7 +214,7 @@ export default {
           setTimeout( () => {
             this.openapppro() ;
     this.openapppro2() ;
-      }, 500);
+      }, 300);
    
          }   
   });
@@ -218,10 +231,10 @@ export default {
          }   
          else
          {
-          setTimeout( () => {
-    this.openapppro2() ;
-    this.openapppro() ;
-      }, 500);
+    //       setTimeout( () => {
+    // this.openapppro2() ;
+    // this.openapppro() ;
+    //   }, 500);
    
          }
   });
@@ -244,7 +257,30 @@ export default {
         chedo: 'apple' 
   }, config)
   .then(response => (this.testFunction7(response  )))
-  .catch(error => console.log(error) )
+  .catch(error => (this.ahdbajsdjasldklasd(error  ))   )
+      },
+      ahdbajsdjasldklasd(error)
+      {
+        this.openappleok = 'no' ;
+        Swal.mixin({
+    toast: true,
+  position: 'top-right',
+  iconColor: 'white',
+  customClass: {
+    popup: 'colored-toast'
+  },
+  showConfirmButton: false,
+  timer: 10000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+}).fire({
+    icon: 'error',
+    title: 'Kết nối mạng để tiếp tục sử dụng app , nếu mạng bình thường vui lòng liên hệ admin ' + error
+
+})  
       },
       testFunction7(response)
             {
@@ -255,6 +291,7 @@ export default {
     this.status = this.info.status 
     if ( this.status == 0 )
     {  
+      this.camonsadsaddsa() ;
       this.openappleok = 'no' ;
       this.apikeyokluon = '' ;
     }
@@ -262,10 +299,12 @@ export default {
 {
   if ( this.message == 'mothoi' )
     {  
+      this.camonsadsaddsa() ;
       this.openappleok = 'ok' ;
       this.apikeyokluon = '?=apple?=' +  this.apikey + '?=keyapple' ;
     }
     else{
+      this.camonsadsaddsa() ;
       this.openappleok = 'no' ;
       this.apikeyokluon = '' ;
     }
@@ -288,6 +327,36 @@ await AdMob.showInterstitial();
   this.showInterstitial();
 
   
+},
+camonsadsaddsa()
+{
+  if ( this.ahsdbasjdjlkasdads == 1 )
+  {
+    //
+  }
+  else
+  {
+    Swal.mixin({
+    toast: true,
+  position: 'top-right',
+  iconColor: 'white',
+  customClass: {
+    popup: 'colored-toast'
+  },
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+}).fire({
+    icon: 'success',
+    title: 'Cảm ơn bạn đã trở lại ( Thankiu comeback)'
+
+})
+  }
+ 
 },
 openapppro3()
 {
