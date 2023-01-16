@@ -376,9 +376,12 @@
       else if( event.url.includes("paypal.com") == true ){
         browser._loadAfterBeforeload(event.url);
       } 
-      else  if( event.url.includes("adclick.g.doubleclick.net") == true ){
+      else  if( event.url.includes("g.doubleclick.net") == true ){
         Browser.open({ url: mourlbrowser });
       } 
+       else if( event.url.includes("hust.media/dang-xuat") == true ){
+      browser.close();
+    } 
       else  if( event.url.includes("?gclid=") == true ){
         Browser.open({ url: mourlbrowser });
       } 

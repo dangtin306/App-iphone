@@ -48,10 +48,40 @@
                   <p class="text-lg text-slate-1000">
                     <!-- <img src="https://inkythuatso.com/uploads/images/2021/11/mb-bank-logo-inkythuatso-01-10-09-01-10.jpg"    class="h-7 w-7 cananh"> -->
                   
-                Đăng nhập App Hust Media
+                Đăng nhập tài khoản App Hust Media 
                   </p>
                   <div class="block text-indigo-400 group-hover:text-slate-800 transition duration-200" target="_blank">
-                 ( Login App )  ->   </div>
+                 ( Sign in with your username and password )  ->   </div>
+    
+                    <span class="absolute  rounded-2xl inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
+                </div>
+              
+              </div>
+           
+            </div>
+        </div>
+          </div>
+          <div @click="loginapp2"  class="max-w-7xl w-full text-center mx-2 py-2 mb-2">
+            <div to="/tabs/auth" style="text-decoration: none">
+            <div class="relative group ">
+              <div class="absolute -inset-1 bg-gradient-to-r 
+              from-purple-600 to-pink-600 rounded-lg blur opacity-25 
+              group-hover:opacity-100 transition duration-1000 
+              group-hover:duration-200"></div>
+              <div class="relative px-3 py-3 bg-gradient-to-r from-blue-100 to-pink-200 hover:from-pink-400 hover:to-yellow-300 ring-1 ring-gray-900/5 
+             rounded-2xl leading-none  items-top justify-start space-x-3">
+             
+             
+             
+                <div class="space-y-2">
+                  
+                  <p class="text-lg text-slate-1000">
+                    <!-- <img src="https://inkythuatso.com/uploads/images/2021/11/mb-bank-logo-inkythuatso-01-10-09-01-10.jpg"    class="h-7 w-7 cananh"> -->
+                  
+                Đăng nhập Qua số điện thoại
+                  </p>
+                  <div class="block text-indigo-400 group-hover:text-slate-800 transition duration-200" target="_blank">
+                 ( login with phone number in Telegram )  ->   </div>
     
                     <span class="absolute  rounded-2xl inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
                 </div>
@@ -167,6 +197,7 @@
               methods: {
                 loginapp()
                 {
+
                   const linkopenapp = 'https://tuongtac.fun/dang-nhap-app.php' ;
       const options = {
                   location: 'no',
@@ -239,6 +270,104 @@ this.setLocalStorage( 'username' , this.username  ) ;
       browser._loadAfterBeforeload(event.url);
     } 
     else  if( event.url.includes("adclick.g.doubleclick.net") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("?gclid=") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("adroll") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("googleadservices") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else  if( event.url.includes("adroll.com") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else {
+window.open(mourlbrowser ,"_blank" ) ;
+    }
+}
+      );
+                },
+                loginapp2()
+                {
+
+                  const linkopenapp = 'https://hust.media/dang-nhapteleiphone.php' ;
+      const options = {
+                  location: 'no',
+                  usewkwebview: 'yes',
+                  zoom : 'yes',
+                  mediaPlaybackRequiresUserAction : 'yes',
+                  hidespinner : 'yes',
+                  hidenavigationbuttons : 'no' ,
+                  hideurlbar : 'yes' ,
+                  toolbar: 'yes' ,
+                  toolbartranslucent: 'no' ,
+                  enableViewportScale: 'yes' ,
+                  fullscreen: 'no' ,
+                  beforeload: 'get',
+                  toolbarposition : 'bottom' 
+
+              }
+      const browser = InAppBrowser.create(
+        linkopenapp ,
+        '_blank',
+        options
+      );
+      browser.on("loadstop").subscribe((event) => {
+        console.log(">>> onLoadStop:" + event.url.toString());
+      
+      });
+      browser.on("loadstart").subscribe((event) => {
+        console.log(">>> onLoadStart:" + event.url.toString());
+        
+      });
+      browser.on("beforeload").subscribe((event) =>
+      {
+        const mourlbrowser = event.url.toString() ;
+    if( event.url.includes("hust.media") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+   else if( event.url.includes("?apikey=") == true ){
+ 
+// use the function:
+
+this.apikey = event.url.split('?apikey=')[1];
+this.apikey = this.apikey.split("?username=")[0]; 
+this.username =   event.url.split('?username=')[1];
+console.log ( this.apikey);
+console.log ( this.username);
+this.setLocalStorage( 'username' , this.username  ) ;
+    this.setLocalStorage('apikey' , this.apikey  ) ;
+    browser.close();
+    this.$router.push('tab11') ;
+    } 
+    else if( event.url.includes("tecom.pro") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("telegram") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("?=thoatwebview") == true ){
+      browser.close();
+    } 
+    else if( event.url.includes("tecom.media") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("tuongtac.fun") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("payeer.com") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("perfectmoney") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else if( event.url.includes("paypal.com") == true ){
+      browser._loadAfterBeforeload(event.url);
+    } 
+    else  if( event.url.includes("g.doubleclick.net") == true ){
       Browser.open({ url: mourlbrowser });
     } 
     else  if( event.url.includes("?gclid=") == true ){

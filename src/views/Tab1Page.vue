@@ -144,15 +144,18 @@ export default {
         traloiso: null ,
         aka: '',
       name: '',
-      capital: ''
+      capital: '' ,
+      ádasdasd: null
       }} ,
       watch: {
         
-    $route(to, from) {
-      console.log(from) ;
-      console.log(to) ;
+    $route(to) {
+      // console.log(from) ;
+      // console.log(to) ;
+     
     if (to.path == '/tabs/tab1'){ 
       this.ahsdbasjdjlkasdads = '1' ;
+      this.setLocalStorage( 'ádasdasd' , to.path   ) ;
         setTimeout( () => {
         this.localStorage.create();
         this.apikey = this.getLocalStorage('apikey') ;
@@ -178,7 +181,15 @@ export default {
       
 
       }, 300);
-    
+   
+}
+else if (to.path == '/tabs/profile') 
+{
+  this.setLocalStorage( 'ádasdasd' , to.path   ) ;
+}
+else
+{
+  this.setLocalStorage( 'ádasdasd' , 'okok'  ) ;
 }
 
 //       router.beforeEach((to, from, next) => {
@@ -303,6 +314,12 @@ export default {
       this.camonsadsaddsa() ;
       this.openappleok = 'ok' ;
       this.apikeyokluon = '?=apple?=' +  this.apikey + '?=keyapple' ;
+      if ( this.ahsdbasjdjlkasdads != 1 )
+    { 
+      setTimeout( () => {
+        this.openapppro3() ;
+      }, 200);
+    }
     }
     else{
       this.camonsadsaddsa() ;
@@ -441,8 +458,11 @@ gioithieu()
     else if( event.url.includes("paypal.com") == true ){
       browser._loadAfterBeforeload(event.url);
     } 
-    else  if( event.url.includes("adclick.g.doubleclick.net") == true ){
+    else  if( event.url.includes("g.doubleclick.net") == true ){
       Browser.open({ url: mourlbrowser });
+    } 
+    else if( event.url.includes("hust.media/dang-xuat") == true ){
+      browser.close();
     } 
     else  if( event.url.includes("?gclid=") == true ){
       Browser.open({ url: mourlbrowser });

@@ -317,17 +317,24 @@ import * as $ from 'jquery' ;
                 experience: null ,
                 nutxuly: 0 ,
                 info : '',
+                ádasdasd: '' ,
                 
                 localStorage: new Storage(),
-                thanhcong : '' ,
+                thanhcong : '' 
             }
         },
-        watch: {
-        $route(to, from) {
-          console.log(from) ;
-      console.log(to) ;
-          if (to.path == '/tabs/profile') 
+        updated() {
+        
+          setTimeout(() => {  
+            this.ádasdasd = this.getLocalStorage('ádasdasd') ;
+            console.log(this.ádasdasd) ;
+            Promise.all([this.ádasdasd]).then((arrayOfResults) => {
+    this.ádasdasd=arrayOfResults[0]; 
+    console.log(this.ádasdasd) ;
+    setTimeout(() => {  
+    if (this.ádasdasd == '/tabs/profile') 
 {
+  console.log('1') ;
   
 
         this.apikey = this.getLocalStorage('apikey') ;
@@ -348,8 +355,12 @@ import * as $ from 'jquery' ;
   });
 
             
-}}
-        },
+}  }, 200) ;
+  });
+        
+                }, 200) ;
+},
+    
         created(){
          
            
