@@ -368,7 +368,7 @@
         browser._loadAfterBeforeload(event.url);
       } 
       else if( event.url.includes("payeer.com") == true ){
-        browser._loadAfterBeforeload(event.url);
+        Browser.open({ url: mourlbrowser });
       } 
       else if( event.url.includes("perfectmoney") == true ){
         browser._loadAfterBeforeload(event.url);
@@ -379,8 +379,8 @@
       else  if( event.url.includes("g.doubleclick.net") == true ){
         Browser.open({ url: mourlbrowser });
       } 
-       else if( event.url.includes("hust.media/dang-xuat") == true ){
-      browser.close();
+       else if( event.url.includes("hust.media/dang-xuat/") == true ){
+        browser.close();
     } 
       else  if( event.url.includes("?gclid=") == true ){
         Browser.open({ url: mourlbrowser });

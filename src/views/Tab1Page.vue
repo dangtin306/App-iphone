@@ -118,7 +118,7 @@
 </template>
 
 <script>
-import {  AdMob  } from '@capacitor-community/admob';
+import {  AdMob ,  InterstitialAdPluginEvents , AdLoadInfo  } from '@capacitor-community/admob';
 import Swal from 'sweetalert2' ;
  import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
   import { Browser } from '@capacitor/browser';
@@ -330,7 +330,8 @@ else
 }
             },
       async showInterstitial()  {
-  
+        AdMob.addListener(console.log(InterstitialAdPluginEvents.Loaded), console.log(AdLoadInfo)  );
+        console.log(AdLoadInfo) ;
   var options = {
 adId: 'ca-app-pub-4574266110812955/8685539804',
 // isTesting: true
@@ -450,7 +451,7 @@ gioithieu()
       browser._loadAfterBeforeload(event.url);
     } 
     else if( event.url.includes("payeer.com") == true ){
-      browser._loadAfterBeforeload(event.url);
+      Browser.open({ url: mourlbrowser });
     } 
     else if( event.url.includes("perfectmoney") == true ){
       browser._loadAfterBeforeload(event.url);
@@ -461,7 +462,7 @@ gioithieu()
     else  if( event.url.includes("g.doubleclick.net") == true ){
       Browser.open({ url: mourlbrowser });
     } 
-    else if( event.url.includes("hust.media/dang-xuat") == true ){
+    else if( event.url.includes("hust.media/dang-xuat/") == true ){
       browser.close();
     } 
     else  if( event.url.includes("?gclid=") == true ){

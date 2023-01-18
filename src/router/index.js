@@ -18,6 +18,11 @@ const routes = [
     name: 'signup',
     component: () => import('@/views/signup.vue')
   },
+   {
+    path: '/tabs/authele',
+    name: 'authele',
+    component: () => import('@/views/authele.vue')
+  },
   {
     path: '/tabs/auth',
     component: () => import('@/views/auth.vue')
