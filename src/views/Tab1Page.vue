@@ -341,7 +341,7 @@ else
   await AdMob.showInterstitial();
 
   // bắt sự kiện khi quảng cáo đóng lại (tắt)
-  AdMob.addListener('adClosed', () => {
+  AdMob.addListener('interstitialAdDismissed', () => {
     console.log('Quảng cáo đã đóng lại!');
     // Thực hiện các xử lý sau khi quảng cáo đóng lại
     if (this.openappleok == 'ok') {
