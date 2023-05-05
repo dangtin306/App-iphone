@@ -75,27 +75,29 @@
     </div>
   </button>
   </router-link> 
-  <div >
-    <div class='text-center' v-if="openappleok != 'ok' && openappleok != 'no'"  >
-    <div v-html="checktrangthai"></div>
-  </div>
-  <div v-if="openappleok == 'ok'" style="text-decoration: none" @click="openapppro3" >
-    <button type='button'
-    class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>
-    <div class='m-auto'>
-      <div class='flex items-center justify-start flex-1 space-x-4'>
-        
-        <span class='font-medium mb-[-2px]'>
-          <p class="mr-4 ml-4 text-center text-black text-3xl underline decoration-pink-500/30">  Ấn đây để tiếp tục truy cập vô App
-          </p>
+<div >
+  <div class='text-center' v-if="openappleok != 'ok' && openappleok != 'no'"   >
+  <div v-html="checktrangthai"></div>
+</div>
+<div v-if="openappleok == 'ok'" style="text-decoration: none" @click="openapppro3" >
+  <button type='button'
+  class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-2 mb-3 w-full dark:bg-slate-800 dark:text-white'>
+  <div class='m-auto'>
+    <div class='flex items-center justify-start flex-1 space-x-4'>
+      
+      
+        <span class="py-2 mr-4 ml-4 text-center text-black text-3xl underline decoration-pink-300 font-extrabold transform rotate-4 tracking-widest bg-gradient-to-r from-pink-100 to-purple-100 hover:scale-110 transition duration-500 ease-in-out">
+          Ấn đây để tiếp tục truy cập vô App
         </span>
-        <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-          <path d='M5 12h13M12 5l7 7-7 7' />
-          </svg>
-      </div>
+        
+ 
+      <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M5 12h13M12 5l7 7-7 7' />
+        </svg>
     </div>
-  </button>
-  </div>     </div> 
+  </div>
+</button>
+</div>     </div> 
             <router-link style="text-decoration: none"  to="/tabs/tab10">
                 <button type='button'
                 class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>
