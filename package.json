@@ -10,7 +10,6 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@admob-plus/capacitor": "^1.24.0",
     "@admob-plus/ionic": "^1.7.0",
     "@awesome-cordova-plugins/in-app-browser": "^5.45.0",
     "@awesome-cordova-plugins/ionic-webview": "^5.45.0",

@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import { AdMobPlus, InterstitialAd } from '@admob-plus/capacitor';
+import {  AdMob  ,InterstitialAdPluginEvents } from '@capacitor-community/admob';
 import Swal from 'sweetalert2' ;
  import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
   import { Browser } from '@capacitor/browser';
@@ -332,21 +332,23 @@ else
 }
             },
             async showInterstitial() {
-  await AdMobPlus.start()
+         
+  var options = {
+    adId: 'ca-app-pub-4574266110812955/8685539804'
+  };
+  AdMob.addListener(InterstitialAdPluginEvents.Dismissed, () => {
+      console.log('Quảng cáo đã đóng lại!');
+   if ( this.openappleok == 'ok' )
+   {
+this.gioithieu();
+   }
+  });
+  await AdMob.prepareInterstitial(options);
+  await AdMob.showInterstitial();
 
-  const interstitial = new InterstitialAd({
-    adUnitId: 'ca-app-pub-4574266110812955/8685539804' ,
-  })
 
-  interstitial.addEventListener('dismiss', async () => {
-    console.log('Interstitial ad dismissed')
-    await interstitial.load()
-  })
-  interstitial.on('load', () => {
-    console.log('Interstitial ad loaded')
-  })
-  await interstitial.load()
-  await interstitial.show()
+ 
+
 },
       openapppro()
 {
