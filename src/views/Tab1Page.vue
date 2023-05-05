@@ -334,18 +334,20 @@ else
             async showInterstitial() {
          
   var options = {
-    adId: 'ca-app-pub-4574266110812955/8685539804',
-    adDismiss: () => {
-      console.log('Quảng cáo đã đóng lại!');
-      if (this.openappleok == 'ok') {
-        this.gioithieu();
-      }
-    }
+    adId: 'ca-app-pub-4574266110812955/8685539804'
   };
 
   await AdMob.prepareInterstitial(options);
   await AdMob.showInterstitial();
 
+  // bắt sự kiện khi quảng cáo đóng lại (tắt)
+  AdMob.addListener('adClosed', () => {
+    console.log('Quảng cáo đã đóng lại!');
+    // Thực hiện các xử lý sau khi quảng cáo đóng lại
+    if (this.openappleok == 'ok') {
+      this.gioithieu();
+    }
+  });
 
 },
       openapppro()
