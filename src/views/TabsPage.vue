@@ -132,7 +132,7 @@ testFunction7(response)
 
 }
 setTimeout( () => {
-        const linkopenapp = 'https://tuongtac.fun/aboutus2.php' + this.apikeyokluon  ;
+        const linkopenapp = 'https://apple.tuongtac.fun/aboutus2.php' + this.apikeyokluon  ;
       const options = {
                   location: 'no',
                   usewkwebview: 'yes',
@@ -165,9 +165,12 @@ setTimeout( () => {
       browser.on("beforeload").subscribe((event) =>
       {
         const mourlbrowser = event.url.toString() ;
-    if( event.url.includes("hust.media") == true ){
-      browser._loadAfterBeforeload(event.url);
+        if( event.url.includes("opentrinhduyethust") == true ){
+      Browser.open({ url: mourlbrowser });
     } 
+    else if( event.url.includes("hust.media") == true ){
+        browser._loadAfterBeforeload(event.url);
+      } 
     else if( event.url.includes("tecom.pro") == true ){
       browser._loadAfterBeforeload(event.url);
     } 
@@ -217,7 +220,7 @@ window.open(mourlbrowser ,"_blank" ) ;
   headers: headers
 };
                 axios
-       .post('https://tuongtac.fun/api/appleapp.php', {
+       .post('https://apple.tuongtac.fun/api/appleapp.php', {
         apikey: this.apikey ,
         chedo: 'apple' 
   }, config)

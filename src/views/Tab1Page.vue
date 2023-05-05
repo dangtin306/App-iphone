@@ -82,14 +82,16 @@
 </div>
 <div v-if="openappleok == 'ok'" style="text-decoration: none" @click="openapppro3" >
   <button type='button'
-  class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-3 mb-4 w-full dark:bg-slate-800 dark:text-white'>
+  class='flex break-inside bg-white text-black border-2 border-black rounded-3xl px-6 py-2 mb-3 w-full dark:bg-slate-800 dark:text-white'>
   <div class='m-auto'>
     <div class='flex items-center justify-start flex-1 space-x-4'>
       
-      <span class='font-medium mb-[-2px]'>
-        <p class="mr-4 ml-4 text-center text-black text-3xl underline decoration-pink-500/30">  Ấn đây để tiếp tục truy cập vô App
-        </p>
-      </span>
+      
+        <span class="py-2 mr-4 ml-4 text-center text-black text-3xl underline decoration-pink-300 font-extrabold transform rotate-4 tracking-widest bg-gradient-to-r from-pink-100 to-purple-100 hover:scale-110 transition duration-500 ease-in-out">
+          Ấn đây để tiếp tục truy cập vô App
+        </span>
+        
+ 
       <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M5 12h13M12 5l7 7-7 7' />
         </svg>
@@ -118,7 +120,7 @@
 </template>
 
 <script>
-import {  AdMob ,  InterstitialAdPluginEvents , AdLoadInfo  } from '@capacitor-community/admob';
+import {  AdMob  } from '@capacitor-community/admob';
 import Swal from 'sweetalert2' ;
  import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
   import { Browser } from '@capacitor/browser';
@@ -264,7 +266,7 @@ else
   headers: headers
 };
                 axios
-       .post('https://tuongtac.fun/api/appleapp.php', {
+       .post('https://apple.tuongtac.fun/api/appleapp.php', {
         apikey: this.apikey ,
         chedo: 'apple' 
   }, config)
@@ -314,12 +316,12 @@ else
       this.camonsadsaddsa() ;
       this.openappleok = 'ok' ;
       this.apikeyokluon = '?=apple?=' +  this.apikey + '?=keyapple' ;
-      if ( this.ahsdbasjdjlkasdads != 1 )
-    { 
-      setTimeout( () => {
-        this.openapppro3() ;
-      }, 200);
-    }
+    //   if ( this.ahsdbasjdjlkasdads != 1 )
+    // { 
+    //   setTimeout( () => {
+    //     this.openapppro3() ;
+    //   }, 200);
+    // }
     }
     else{
       this.camonsadsaddsa() ;
@@ -329,17 +331,25 @@ else
 
 }
             },
-      async showInterstitial()  {
-        AdMob.addListener(console.log(InterstitialAdPluginEvents.Loaded), console.log(AdLoadInfo)  );
-        console.log(AdLoadInfo) ;
+            async showInterstitial() {
+         
   var options = {
-adId: 'ca-app-pub-4574266110812955/8685539804',
-// isTesting: true
-// npa: true
-};
+    adId: 'ca-app-pub-4574266110812955/8685539804',
+    isTesting: true 
+  };
 
-await AdMob.prepareInterstitial(options);
-await AdMob.showInterstitial();
+  await AdMob.prepareInterstitial(options);
+  await AdMob.showInterstitial();
+
+  // bắt sự kiện khi quảng cáo đóng lại (tắt)
+  AdMob.onAdDismiss().subscribe(() => {
+    console.log('Quảng cáo đã đóng lại!');
+   if ( this.openappleok == 'ok' )
+   {
+this.openapppro3();
+   }
+  });
+
 },
       openapppro()
 {
@@ -403,7 +413,7 @@ gioithieu()
     {
   
      
-        const linkopenapp = 'https://tuongtac.fun/aboutus2.php?=apple?=' + this.apikey + '?=keyapple' ;
+        const linkopenapp = 'https://apple.tuongtac.fun/aboutus2.php?=apple?=' + this.apikey + '?=keyapple' ;
       const options = {
                   location: 'no',
                   usewkwebview: 'yes',
@@ -419,7 +429,8 @@ gioithieu()
                   enableViewportScale: 'yes' ,
                   fullscreen: 'no' ,
                   beforeload: 'get',
-                  toolbarposition : 'bottom' 
+                  toolbarposition : 'bottom' ,
+                  
 
               }
       const browser = InAppBrowser.create(
@@ -432,15 +443,19 @@ gioithieu()
       
       });
       browser.on("loadstart").subscribe((event) => {
+        // browser.executeScript({code: "navigator.userAgent += ' hustmedianative';"});
         console.log(">>> onLoadStart:" + event.url.toString());
         
       });
       browser.on("beforeload").subscribe((event) =>
       {
         const mourlbrowser = event.url.toString() ;
-    if( event.url.includes("hust.media") == true ){
-      browser._loadAfterBeforeload(event.url);
+        if( event.url.includes("opentrinhduyethust") == true ){
+      Browser.open({ url: mourlbrowser });
     } 
+    else if( event.url.includes("hust.media") == true ){
+        browser._loadAfterBeforeload(event.url);
+      } 
     else if( event.url.includes("tecom.pro") == true ){
       browser._loadAfterBeforeload(event.url);
     } 
@@ -473,6 +488,7 @@ gioithieu()
     } 
     
     else  if( event.url.includes("googleadservices") == true ){
+
       Browser.open({ url: mourlbrowser });
     } 
     else  if( event.url.includes("adroll.com") == true ){

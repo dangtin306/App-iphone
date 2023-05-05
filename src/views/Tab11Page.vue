@@ -204,7 +204,7 @@
     headers: headers
   };
                   axios
-         .post('https://tuongtac.fun/api/appleapp.php', {
+         .post('https://apple.tuongtac.fun/api/appleapp.php', {
           apikey: this.apikey ,
           chedo: 'apple' 
     }, config)
@@ -320,7 +320,7 @@
       {
     
        
-          const linkopenapp = 'https://tuongtac.fun/aboutus2.php?=apple?=' + this.apikey + '?=keyapple' ;
+          const linkopenapp = 'https://apple.tuongtac.fun/aboutus2.php?=apple?=' + this.apikey + '?=keyapple' ;
         const options = {
                     location: 'no',
                     usewkwebview: 'yes',
@@ -336,7 +336,8 @@
                     lefttoright: 'yes',
                     fullscreen: 'no' ,
                     beforeload: 'get',
-                    toolbarposition : 'bottom' 
+                    toolbarposition : 'bottom' ,
+                    overrideUserAgent: 'hustmedianative'
   
                 }
         const browser = InAppBrowser.create(
@@ -355,7 +356,10 @@
         browser.on("beforeload").subscribe((event) =>
         {
           const mourlbrowser = event.url.toString() ;
-      if( event.url.includes("hust.media") == true ){
+            if( event.url.includes("opentrinhduyethust") == true ){
+      Browser.open({ url: mourlbrowser });
+    } 
+    else if( event.url.includes("hust.media") == true ){
         browser._loadAfterBeforeload(event.url);
       } 
       else if( event.url.includes("tecom.pro") == true ){

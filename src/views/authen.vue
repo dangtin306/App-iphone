@@ -198,7 +198,7 @@
                 loginapp()
                 {
 
-                  const linkopenapp = 'https://tuongtac.fun/dang-nhap-app.php' ;
+                  const linkopenapp = 'https://apple.tuongtac.fun/dang-nhap-app.php' ;
       const options = {
                   location: 'no',
                   usewkwebview: 'yes',
@@ -429,7 +429,7 @@ window.open(mourlbrowser ,"_blank" ) ;
   headers: headers
 };
                 axios
-       .post('https://tuongtac.fun/ionic/dangky.php', {
+       .post('https://apple.tuongtac.fun/ionic/dangky.php', {
         chedo: 'random' ,
   }, config)
   .then(response => (this.testFunction(response  )))

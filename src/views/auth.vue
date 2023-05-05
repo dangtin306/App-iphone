@@ -143,7 +143,7 @@
   headers: headers
 };
                 axios
-       .post('https://tuongtac.fun/ionic/dangnhap.php', {
+       .post('https://apple.tuongtac.fun/ionic/dangnhap.php', {
         Username: this.Username ,
         Password: this.Password 
   }, config)

@@ -171,7 +171,7 @@ else
   headers: headers
 };
                 axios
-       .post('https://tuongtac.fun/ionic/dangnhap.php', {
+       .post('https://apple.tuongtac.fun/ionic/dangnhap.php', {
         phonenumber: this.phonenumber ,
         madangnhap: this.madangnhap ,
         chedo: chedo ,
