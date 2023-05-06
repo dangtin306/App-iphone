@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import { fromEvent } from 'rxjs';
+
 import {  AdMob  ,InterstitialAdPluginEvents   } from '@capacitor-community/admob';
 import Swal from 'sweetalert2' ;
  import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
@@ -317,12 +317,12 @@ else
       this.camonsadsaddsa() ;
       this.openappleok = 'ok' ;
       this.apikeyokluon = '?=apple?=' +  this.apikey + '?=keyapple' ;
-    //   if ( this.ahsdbasjdjlkasdads != 1 )
-    // { 
-    //   setTimeout( () => {
-    //     this.openapppro3() ;
-    //   }, 200);
-    // }
+      if ( this.ahsdbasjdjlkasdads != 1 )
+    { 
+      setTimeout( () => {
+        this.openapppro3() ;
+      }, 200);
+    }
     }
     else{
       this.camonsadsaddsa() ;
@@ -332,49 +332,32 @@ else
 
 }
             },
-             waitForInterstitialDismissed() {
+//              waitForInterstitialDismissed() {
     
-  const interstitialLoaded$ = fromEvent(document, InterstitialAdPluginEvents.Loaded);
-  const interstitialShown$ = fromEvent(document, InterstitialAdPluginEvents.Showed);
-  const interstitialDismissed$ = fromEvent(document, InterstitialAdPluginEvents.Dismissed);
-  // const interstitialDismissed$ = fromEvent(document, InterstitialAdPluginEvents.Dismissed);
-  console.log( interstitialLoaded$);
-  interstitialLoaded$.subscribe((info) => {
-    console.log('Quảng cáo đang load !');
-    console.log(info);
-  });
-  console.log( interstitialShown$);
-  interstitialShown$.subscribe((info) => {
-    console.log('Quảng cáo đã mở !');
-    console.log(info);
-  });
-  console.log( interstitialDismissed$);
-  interstitialDismissed$.subscribe((info) => {
-    console.log('Quảng cáo đã đóng lại!');
-    console.log(info);
-  });
 
-  return new Promise((resolve) => {
-    const interstitialDismissedSubscription = interstitialDismissed$.subscribe(() => {
-      resolve();
-      interstitialDismissedSubscription.unsubscribe(); // xóa subscription để tránh memory leak
-    });
-
-    // Chờ đợi 200ms nếu interstitial chưa được load
-    setTimeout(() => {
-      resolve();
-      interstitialDismissedSubscription.unsubscribe(); // xóa subscription để tránh memory leak
-    }, 200);
-  });
-},
+//               const interstitialLoaded =    AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info) => {
+//     console.log('Quảng cáo đang load !');
+//     console.log(info);
+//   });
+//   console.log(interstitialLoaded);
+//     AdMob.addListener(InterstitialAdPluginEvents.Showed, (info) => {
+//     console.log('Quảng cáo đã mở !');
+//     console.log(info);
+//   });
+//     AdMob.addListener(InterstitialAdPluginEvents.Dismissed, (info) => {
+//       console.log('Quảng cáo đã đóng lại!');
+//       console.log(info);
+//       if (this.openappleok == 'ok') {
+//         this.gioithieu();
+//       }
+//   });
+  
+// },
           async showInterstitial() {
   var options = {
     adId: 'ca-app-pub-4574266110812955/8685539804'
   };
   await AdMob.prepareInterstitial(options);
-  setInterval(() => {
-       this.waitForInterstitialDismissed();
-    }, 1000);
   await AdMob.showInterstitial();
   
 
@@ -382,7 +365,7 @@ else
 },
       openapppro()
 {
-  this.showInterstitial();
+  // this.showInterstitial();
 
   
 },
@@ -471,6 +454,9 @@ gioithieu()
         console.log(">>> onLoadStop:" + event.url.toString());
       
       });
+      browser.onExit().subscribe(() => {
+        this.showInterstitial();
+});
       browser.on("loadstart").subscribe((event) => {
         // browser.executeScript({code: "navigator.userAgent += ' hustmedianative';"});
         console.log(">>> onLoadStart:" + event.url.toString());
