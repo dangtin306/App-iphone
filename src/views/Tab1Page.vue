@@ -202,11 +202,7 @@ else
       
     },
   },
-  mounted() {
-    setInterval(() => {
-       this.waitForInterstitialDismissed();
-    }, 200)
-  },
+
       created(){
       
 
@@ -336,21 +332,23 @@ else
 
 }
             },
-            async waitForInterstitialDismissed() {
+             waitForInterstitialDismissed() {
+    
   const interstitialLoaded$ = fromEvent(document, InterstitialAdPluginEvents.Loaded);
   const interstitialShown$ = fromEvent(document, InterstitialAdPluginEvents.Showed);
   const interstitialDismissed$ = fromEvent(document, InterstitialAdPluginEvents.Dismissed);
-
+  // const interstitialDismissed$ = fromEvent(document, InterstitialAdPluginEvents.Dismissed);
+  console.log( interstitialLoaded$);
   interstitialLoaded$.subscribe((info) => {
     console.log('Quảng cáo đang load !');
     console.log(info);
   });
-
+  console.log( interstitialShown$);
   interstitialShown$.subscribe((info) => {
     console.log('Quảng cáo đã mở !');
     console.log(info);
   });
-
+  console.log( interstitialDismissed$);
   interstitialDismissed$.subscribe((info) => {
     console.log('Quảng cáo đã đóng lại!');
     console.log(info);
@@ -374,7 +372,9 @@ else
     adId: 'ca-app-pub-4574266110812955/8685539804'
   };
   await AdMob.prepareInterstitial(options);
-  await this.waitForInterstitialDismissed();
+  setInterval(() => {
+       this.waitForInterstitialDismissed();
+    }, 1000);
   await AdMob.showInterstitial();
   
 
