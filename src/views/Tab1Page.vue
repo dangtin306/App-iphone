@@ -331,17 +331,21 @@ else
 
 }
             },
+            
           async showInterstitial() {
   var options = {
     adId: 'ca-app-pub-4574266110812955/8685539804'
   };
+  await AdMob.prepareInterstitial(options);
   AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info) => {
     console.log('Quảng cáo đang load !');
     console.log(info);
+    AdMob.showInterstitial();
   });
   AdMob.addListener(InterstitialAdPluginEvents.Showed, (info) => {
     console.log('Quảng cáo đã mở !');
     console.log(info);
+    AdMob.showInterstitial();
   });
   AdMob.addListener(InterstitialAdPluginEvents.Dismissed, (info) => {
       console.log('Quảng cáo đã đóng lại!');
@@ -351,8 +355,8 @@ else
       }
   });
 
-  await AdMob.prepareInterstitial(options);
-  await AdMob.showInterstitial();
+
+
 },
       openapppro()
 {
