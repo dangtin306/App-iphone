@@ -202,7 +202,11 @@ else
       
     },
   },
-  
+  mounted() {
+    setInterval(() => {
+       this.waitForInterstitialDismissed();
+    }, 200)
+  },
       created(){
       
 
