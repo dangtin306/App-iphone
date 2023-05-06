@@ -121,7 +121,7 @@
 
 <script>
 
-import {  AdMob  ,InterstitialAdPluginEvents   } from '@capacitor-community/admob';
+import {  AdMob     } from '@capacitor-community/admob';
 import Swal from 'sweetalert2' ;
  import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
   import { Browser } from '@capacitor/browser';
@@ -454,14 +454,15 @@ gioithieu()
         console.log(">>> onLoadStop:" + event.url.toString());
       
       });
-      browser.onExit().subscribe(() => {
-        this.showInterstitial();
-});
       browser.on("loadstart").subscribe((event) => {
         // browser.executeScript({code: "navigator.userAgent += ' hustmedianative';"});
         console.log(">>> onLoadStart:" + event.url.toString());
         
       });
+      browser.on("exit").subscribe(() => {
+        console.log("tắt ");
+        this.showInterstitial();
+});
       browser.on("beforeload").subscribe((event) =>
       {
         const mourlbrowser = event.url.toString() ;
