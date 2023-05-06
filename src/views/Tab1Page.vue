@@ -331,21 +331,14 @@ else
 
 }
             },
-            
-          async showInterstitial() {
-  var options = {
-    adId: 'ca-app-pub-4574266110812955/8685539804'
-  };
-  await AdMob.prepareInterstitial(options);
-  AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info) => {
+            async  waitForInterstitialDismissed() {
+              AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info) => {
     console.log('Quảng cáo đang load !');
     console.log(info);
-    AdMob.showInterstitial();
   });
   AdMob.addListener(InterstitialAdPluginEvents.Showed, (info) => {
     console.log('Quảng cáo đã mở !');
     console.log(info);
-    AdMob.showInterstitial();
   });
   AdMob.addListener(InterstitialAdPluginEvents.Dismissed, (info) => {
       console.log('Quảng cáo đã đóng lại!');
@@ -354,7 +347,29 @@ else
         this.gioithieu();
       }
   });
+  return new Promise((resolve) => {
+    const interstitialListener = AdMob.addListener(InterstitialAdPluginEvents.Dismissed, (info ) => {
+      console.log('Quảng cáo đã đóng lại!');
+      console.log(info);
+      resolve();
+      interstitialListener.remove(); // xóa listener để tránh memory leak
+    });
 
+    // Chờ đợi 200ms nếu interstitial chưa được load
+    setTimeout(() => {
+      resolve();
+      interstitialListener.remove(); // xóa listener để tránh memory leak
+    }, 200);
+  });
+  
+},
+          async showInterstitial() {
+  var options = {
+    adId: 'ca-app-pub-4574266110812955/8685539804'
+  };
+  await AdMob.prepareInterstitial(options);
+  await this.waitForInterstitialDismissed();
+  await AdMob.showInterstitial();
 
 
 },
