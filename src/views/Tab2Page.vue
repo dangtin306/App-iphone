@@ -194,6 +194,7 @@ export default {
               lienket: null ,
               inputmota: null ,
               usersocial: null ,
+              canDismiss: null ,
               inputaddlink: null ,
               options: [
                     { text: 'Vui lòng chọn 1 lựa chọn', value: 'null' } ,

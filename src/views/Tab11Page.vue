@@ -135,6 +135,7 @@
         return {
           localStorage: new Storage(),
           picked: '' ,
+          sdfsdnfnsdfklsdfm: 0 ,
           apikey: null ,
           checktrangthai: `<h5> <div  class="spinner-border" role="status">
   </div><h1> Chờ xíu nhé ( Loading ) </h1> </h5>` ,
@@ -256,6 +257,14 @@
         this.camonsadsaddsa() ;
         this.openappleok = 'ok' ;
         this.apikeyokluon = '?=apple?=' +  this.apikey + '?=keyapple' ;
+        
+        if ( this.sdfsdnfnsdfklsdfm == 0 )
+    { 
+      setTimeout( () => {
+        this.sdfsdnfnsdfklsdfm == 1 ; 
+        this.openapppro3() ;
+      }, 200);
+    }
       }
       else{
         this.camonsadsaddsa() ;
