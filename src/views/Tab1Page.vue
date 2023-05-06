@@ -120,6 +120,7 @@
 </template>
 
 <script>
+import { fromEvent } from 'rxjs';
 import {  AdMob  ,InterstitialAdPluginEvents   } from '@capacitor-community/admob';
 import Swal from 'sweetalert2' ;
  import { InAppBrowser  } from "@awesome-cordova-plugins/in-app-browser";
@@ -331,37 +332,38 @@ else
 
 }
             },
-            async  waitForInterstitialDismissed() {
-              await     AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info) => {
+            async waitForInterstitialDismissed() {
+  const interstitialLoaded$ = fromEvent(document, InterstitialAdPluginEvents.Loaded);
+  const interstitialShown$ = fromEvent(document, InterstitialAdPluginEvents.Showed);
+  const interstitialDismissed$ = fromEvent(document, InterstitialAdPluginEvents.Dismissed);
+
+  interstitialLoaded$.subscribe((info) => {
     console.log('Quảng cáo đang load !');
     console.log(info);
   });
-  await  AdMob.addListener(InterstitialAdPluginEvents.Showed, (info) => {
+
+  interstitialShown$.subscribe((info) => {
     console.log('Quảng cáo đã mở !');
     console.log(info);
   });
-  await  AdMob.addListener(InterstitialAdPluginEvents.Dismissed, (info) => {
-      console.log('Quảng cáo đã đóng lại!');
-      console.log(info);
-      if (this.openappleok == 'ok') {
-        this.gioithieu();
-      }
+
+  interstitialDismissed$.subscribe((info) => {
+    console.log('Quảng cáo đã đóng lại!');
+    console.log(info);
   });
+
   return new Promise((resolve) => {
-    const interstitialListener = AdMob.addListener(InterstitialAdPluginEvents.Dismissed, (info ) => {
-      console.log('Quảng cáo đã đóng lại!');
-      console.log(info);
+    const interstitialDismissedSubscription = interstitialDismissed$.subscribe(() => {
       resolve();
-      interstitialListener.remove(); // xóa listener để tránh memory leak
+      interstitialDismissedSubscription.unsubscribe(); // xóa subscription để tránh memory leak
     });
 
     // Chờ đợi 200ms nếu interstitial chưa được load
     setTimeout(() => {
       resolve();
-      interstitialListener.remove(); // xóa listener để tránh memory leak
+      interstitialDismissedSubscription.unsubscribe(); // xóa subscription để tránh memory leak
     }, 200);
   });
-  
 },
           async showInterstitial() {
   var options = {
@@ -370,21 +372,8 @@ else
   await AdMob.prepareInterstitial(options);
   await this.waitForInterstitialDismissed();
   await AdMob.showInterstitial();
-  await     AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info) => {
-    console.log('Quảng cáo đang load !');
-    console.log(info);
-  });
-  await  AdMob.addListener(InterstitialAdPluginEvents.Showed, (info) => {
-    console.log('Quảng cáo đã mở !');
-    console.log(info);
-  });
-  await  AdMob.addListener(InterstitialAdPluginEvents.Dismissed, (info) => {
-      console.log('Quảng cáo đã đóng lại!');
-      console.log(info);
-      if (this.openappleok == 'ok') {
-        this.gioithieu();
-      }
-  });
+  
+
 
 },
       openapppro()
