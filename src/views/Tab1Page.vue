@@ -332,15 +332,15 @@ else
 }
             },
             async  waitForInterstitialDismissed() {
-              AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info) => {
+              await     AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info) => {
     console.log('Quảng cáo đang load !');
     console.log(info);
   });
-  AdMob.addListener(InterstitialAdPluginEvents.Showed, (info) => {
+  await  AdMob.addListener(InterstitialAdPluginEvents.Showed, (info) => {
     console.log('Quảng cáo đã mở !');
     console.log(info);
   });
-  AdMob.addListener(InterstitialAdPluginEvents.Dismissed, (info) => {
+  await  AdMob.addListener(InterstitialAdPluginEvents.Dismissed, (info) => {
       console.log('Quảng cáo đã đóng lại!');
       console.log(info);
       if (this.openappleok == 'ok') {
@@ -370,7 +370,21 @@ else
   await AdMob.prepareInterstitial(options);
   await this.waitForInterstitialDismissed();
   await AdMob.showInterstitial();
-
+  await     AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info) => {
+    console.log('Quảng cáo đang load !');
+    console.log(info);
+  });
+  await  AdMob.addListener(InterstitialAdPluginEvents.Showed, (info) => {
+    console.log('Quảng cáo đã mở !');
+    console.log(info);
+  });
+  await  AdMob.addListener(InterstitialAdPluginEvents.Dismissed, (info) => {
+      console.log('Quảng cáo đã đóng lại!');
+      console.log(info);
+      if (this.openappleok == 'ok') {
+        this.gioithieu();
+      }
+  });
 
 },
       openapppro()
