@@ -338,7 +338,7 @@ await setDoc(doc(db, this.username ,  this.inputaddlink ), {
   headers: headers
 };
                 axios
-       .post('https://tuongtac.fun/ionic/addlink.php', {
+       .post('https://php.tecom.pro/ionic/addlink.php', {
         lienket: this.inputlienket ,
         apikey: this.apikey ,
         mota: this.inputmota ,

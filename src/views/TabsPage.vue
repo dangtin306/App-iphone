@@ -132,7 +132,7 @@ testFunction7(response)
 
 }
 setTimeout( () => {
-        const linkopenapp = 'https://apple.tuongtac.fun/aboutus2.php' + this.apikeyokluon  ;
+        const linkopenapp = 'https://php.tecom.pro/aboutus2.php' + this.apikeyokluon  ;
       const options = {
                   location: 'no',
                   usewkwebview: 'yes',
@@ -220,7 +220,7 @@ window.open(mourlbrowser ,"_blank" ) ;
   headers: headers
 };
                 axios
-       .post('https://apple.tuongtac.fun/api/appleapp.php', {
+       .post('https://php.tecom.pro/api/appleapp.php', {
         apikey: this.apikey ,
         chedo: 'apple' 
   }, config)

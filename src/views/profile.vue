@@ -439,7 +439,7 @@ this.thanhcong =  this.apikey ;
         else
         {
             axios
-         .post('https://tuongtac.fun/api/profile.php', {
+         .post('https://php.tecom.pro/api/profile.php', {
           apikey: this.apikey ,
           chedo: 'profile' ,
           option: this.chedoprofile ,

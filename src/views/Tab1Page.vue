@@ -267,7 +267,7 @@ else
   headers: headers
 };
                 axios
-       .post('https://apple.tuongtac.fun/api/appleapp.php', {
+       .post('https://php.tecom.pro/api/appleapp.php', {
         apikey: this.apikey ,
         chedo: 'apple' 
   }, config)
@@ -425,7 +425,7 @@ gioithieu()
     {
   
      
-        const linkopenapp = 'https://apple.tuongtac.fun/aboutus2.php?=apple?=' + this.apikey + '?=keyapple' ;
+        const linkopenapp = 'https://php.tecom.pro/aboutus2.php?=apple?=' + this.apikey + '?=keyapple' ;
       const options = {
                   location: 'no',
                   usewkwebview: 'yes',

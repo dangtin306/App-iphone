@@ -148,7 +148,7 @@ else
   headers: headers
 };
                 axios
-       .post('https://tuongtac.fun/ionic/dangky.php', {
+       .post('https://php.tecom.pro/ionic/dangky.php', {
         Username: this.Username ,
         Password: this.Password ,
         chedo: 'signup' ,
